@@ -1,0 +1,21 @@
+{
+  "name": "vue-press",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "font-awesome": "^4.7.0",
+    "vuepress": "^1.0.0-alpha.48",
+    "vuepress-theme-meteorlxy": "^1.0.0-alpha.37"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vuepress dev src",
+    "build": "vuepress build src --dest dist",
+    "src:build": "vuepress build src"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
