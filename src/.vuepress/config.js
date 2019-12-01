@@ -82,7 +82,17 @@ module.exports = {
 
     // 是否显示文章的最近更新时间
     lastUpdated: true,
+    // 底部 footer 的相关设置 (可选)
+    footer: {
+      // 是否显示 Powered by VuePress
+      poweredBy: true,
 
+      // 是否显示使用的主题
+      poweredByTheme: true,
+
+      // 添加自定义 footer (支持 HTML)
+      custom: '',
+    },
     // 顶部导航栏内容
     nav: [
       { text: 'Home', link: '/', exact: true },
