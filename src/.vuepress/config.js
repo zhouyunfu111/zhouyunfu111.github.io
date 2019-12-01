@@ -22,11 +22,12 @@ module.exports = {
   theme: 'meteorlxy',
 
   // 主题配置
-  themeConfig: {
+  themeConfig: { 
+    
     // 主题语言，参考下方 [主题语言] 章节
     lang: Object.assign(require('vuepress-theme-meteorlxy/lib/langs/zh-CN'), {
-      home: '欢迎来到我的首页！',
-      posts: '韬光养晦,厚积薄发',
+      home: '不忘初心，方得始终',
+      posts: '韬光养晦,厚积薄发', 
     }),
 
     

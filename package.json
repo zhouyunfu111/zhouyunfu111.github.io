@@ -5,8 +5,8 @@
   "main": "index.js",
   "dependencies": {
     "font-awesome": "^4.7.0",
-    "vuepress": "^1.0.0-alpha.48",
-    "vuepress-theme-meteorlxy": "^1.0.0-alpha.37"
+    "vuepress": "^1.1.0",
+    "vuepress-theme-meteorlxy": "^1.5.0"
   },
   "devDependencies": {},
   "scripts": {

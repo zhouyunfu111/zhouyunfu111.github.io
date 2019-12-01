@@ -1,6 +1,6 @@
 ---
 top: 1
-category: Coding
+category: JS
 # tags:
 #   - 图标
 date: 2019-05-29
@@ -219,19 +219,19 @@ function(){}  instanceof Object // true
 | 调用                   | 结果           |
 | -------------          | ------------- |
 | `Object.prototype.toString.call(true)`          | `[object Boolean]`     |
-| `Object.prototype.toString.call(1874)`          | `number`      |
+| `Object.prototype.toString.call(1874)`          | `[object Number]`      |
 | `Object.prototype.toString.call('hello')`       | `[object String]`      |
 | `Object.prototype.toString.call(null)`          | `[object Null]`        |
 | `Object.prototype.toString.call(undefined)`     | `[object Undefined]`   |
 | `Object.prototype.toString.call(Symbol())`      | `[object Symbol]`      |
 | `Object.prototype.toString.call({})`            | `[object Object]`      |
 | `Object.prototype.toString.call(function() {})` | `[object Function]`    |
-| `Object.prototype.toString.call([])`            | `[object Array]`        |
-| `Object.prototype.toString.call(new Error())`   | `[object Error]`        |
-| `Object.prototype.toString.call(new RegExp())`  | `[object RegExp]`        |
+| `Object.prototype.toString.call([])`            | `[object Array]`       |
+| `Object.prototype.toString.call(new Error())`   | `[object Error]`       |
+| `Object.prototype.toString.call(new RegExp())`  | `[object RegExp]`      |
 | `Object.prototype.toString.call(Math)`          | `[object Math]`        |
 | `Object.prototype.toString.call(JSON)`          | `[object JSON]`        |
-| `Object.prototype.toString.call(window)`        | `[object Window]`        |
+| `Object.prototype.toString.call(window)`        | `[object Window]`      |
 
 利用`闭包` and `toString`封装
 >不推荐将这个函数用来检测可能会产生包装类型的基本数据类型上,因为 call 会将第一个参数进行装箱操作
@@ -288,7 +288,7 @@ isArray([]) // true
 | `NaN`               | `NaN`            |	false	     |	false |	`true`      |
 
 ### Truthy (真值)
->在 `JavaScript` 中，`Truthy` (真值)指的是在 布尔值 上下文中转换后的值为真的值。所有值都是真值，除非它们被定义为 `falsy` (即除了 `false`，`0`，`""`，`null`，undefined和 NaN 外)。 JavaScript 中的真值示例如下（将被转换为 true，if 后的代码段将被执行）：
+>在 `JavaScript` 中，`Truthy` (真值)指的是在 布尔值 上下文中转换后的值为真的值。所有值都是真值，除非它们被定义为 `falsy` (即除了 `false`，`0`，`""`，`null`，`undefined`和 `NaN` 外)。 JavaScript 中的真值示例如下（将被转换为 true，if 后的代码段将被执行）：
 
 ```js
 if (true)
