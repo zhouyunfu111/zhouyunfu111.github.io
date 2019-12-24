@@ -15,6 +15,11 @@ title: vsCode!
 }
 ```
 [How do I hide certain files from the sidebar in Visual Studio Code?](https://stackoverflow.com/questions/30140112/how-do-i-hide-certain-files-from-the-sidebar-in-visual-studio-code/30142299#30142299)
+
+## FiraCode 字体
+[https://github.com/tonsky/FiraCode](https://github.com/tonsky/FiraCode)
+
+
 ## 插件
 - [Atom One Dark Theme](https://marketplace.visualstudio.com/items?itemName=akamud.vscode-theme-onedark)
 - [Flat UI](https://marketplace.visualstudio.com/items?itemName=lkytal.FlatUI)
@@ -36,28 +41,38 @@ title: vsCode!
 ## 默认设置
 ```json
 {
-    "workbench.colorTheme": "One Dark Pro",
     "window.zoomLevel": 0,
     "workbench.iconTheme": "vscode-great-icons",
-    "editor.fontFamily": "Fira Code",
-    "editor.fontLigatures": true,
+    "editor.fontLigatures": false,
     "files.exclude": {
         "node_modules/": true
     },
     "editor.tabSize": 2,
+    "javascript.format.insertSpaceBeforeFunctionParenthesis": true, 
     "terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe",
-    "explorer.confirmDelete": false,
-    "eslint.autoFixOnSave": true,
+    "explorer.confirmDelete": false,  
     "eslint.validate": [
-        "javascript",{
+        "javascript",
+        "html",
+        "vue",
+        {
             "language": "vue",
             "autoFix": true
-        },"html",
-        "vue"
+        }
     ],
     "files.associations": {
         "*.vue ": "vue"
     },
-    "search.location": "sidebar"
+    "search.location": "sidebar",
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true,
+        "eslint.autoFixOnSave": true,
+    },
+    "editor.fontFamily": "Fira Code",
+    "editor.fontSize": 18,
+    // 控制字体粗细。
+    "editor.fontWeight": "normal",
+    "terminal.integrated.fontFamily": "monospace",
+    "workbench.colorTheme": "One Dark Pro"
 }
 ```

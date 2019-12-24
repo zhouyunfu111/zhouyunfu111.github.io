@@ -2,7 +2,7 @@
 top: 1
 category: JS
 # tags:
-#   - 图标
+#   - js
 date: 2019-05-29
 title: JavaScript 基础---变量类型!
 ---

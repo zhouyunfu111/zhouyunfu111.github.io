@@ -26,7 +26,7 @@ module.exports = {
     
     // 主题语言，参考下方 [主题语言] 章节
     lang: Object.assign(require('vuepress-theme-meteorlxy/lib/langs/zh-CN'), {
-      home: '不忘初心，方得始终',
+      home: '事常与人违，事总在人为',
       posts: '韬光养晦,厚积薄发', 
     }),
 
@@ -37,7 +37,7 @@ module.exports = {
       nickname: 'cloudfloat',
 
       // 个人简介
-      description: 'Happy Coding<br/>Happy Life',
+      description: 'Not everything that is faced can be changed, but nothing can be changed until it is faced.',
 
       // 电子邮箱
       email: '1301964096@qq.com',
