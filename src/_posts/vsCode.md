@@ -43,36 +43,55 @@ title: vsCode!
 {
     "window.zoomLevel": 0,
     "workbench.iconTheme": "vscode-great-icons",
-    "editor.fontLigatures": false,
+    "editor.fontLigatures": true,
+    "editor.formatOnSave": true,
     "files.exclude": {
         "node_modules/": true
     },
     "editor.tabSize": 2,
-    "javascript.format.insertSpaceBeforeFunctionParenthesis": true, 
     "terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe",
-    "explorer.confirmDelete": false,  
+    "explorer.confirmDelete": false,
     "eslint.validate": [
         "javascript",
         "html",
-        "vue",
-        {
-            "language": "vue",
-            "autoFix": true
-        }
+        "vue"
     ],
     "files.associations": {
         "*.vue ": "vue"
     },
     "search.location": "sidebar",
     "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": true,
-        "eslint.autoFixOnSave": true,
+        "source.fixAll.eslint": true
     },
+    "vetur.format.defaultFormatterOptions": {
+        "prettier": {
+            "semi": false,
+            "singleQuote": true,
+        },
+        "prettyhtml": {
+            "wrapAttributes": true,
+            "sortAttributes": true
+        }
+    },
+    "javascript.format.insertSpaceBeforeFunctionParenthesis": true,
+    "vetur.format.defaultFormatter.js": "vscode-typescript",
     "editor.fontFamily": "Fira Code",
     "editor.fontSize": 18,
     // 控制字体粗细。
     "editor.fontWeight": "normal",
-    "terminal.integrated.fontFamily": "monospace",
-    "workbench.colorTheme": "One Dark Pro"
+    "terminal.integrated.fontFamily": "Fira Code",
+    "workbench.colorTheme": "One Dark Pro",
+    "editor.renderControlCharacters": true,
+    "[vue]": {
+        "editor.defaultFormatter": "octref.vetur"
+    },
+    "stylusSupremacy.insertColons": false, // 是否插入冒号
+    "stylusSupremacy.insertSemicolons": false, // 是否插入分好
+    "stylusSupremacy.insertBraces": false, // 是否插入大括号
+    "stylusSupremacy.insertNewLineAroundImports": false, // import之后是否换行
+    "stylusSupremacy.insertNewLineAroundBlocks": false,
+    "[javascript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    }
 }
 ```
