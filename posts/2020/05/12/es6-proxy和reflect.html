@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>es6 Proxy和Reflect | zhouyunfu Blog</title>
+    <meta name="description" content="This is my blog">
+    <link rel="icon" href="/zhouyunfu111.github.io/assets/img/avatar.jpg">
+    
+    <link rel="preload" href="/zhouyunfu111.github.io/assets/css/0.styles.fe0ecf59.css" as="style"><link rel="preload" href="/zhouyunfu111.github.io/assets/js/app.a992bd44.js" as="script"><link rel="preload" href="/zhouyunfu111.github.io/assets/js/6.2b128785.js" as="script"><link rel="preload" href="/zhouyunfu111.github.io/assets/js/16.7dbb4ce7.js" as="script"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/1.f4587165.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/10.af1ee702.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/11.d2fc8b4e.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/12.96433f86.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/13.faa91d78.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/14.9fe00273.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/15.682e11af.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/17.057b5467.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/18.888540aa.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/19.a1277094.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/20.6c5940f9.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/21.cb5cbbdd.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/22.4040c000.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/23.24caff7b.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/24.cbc38b26.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/25.411f982b.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/26.c74a1ed4.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/27.67bb7207.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/28.a2cc8d89.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/29.84adef4b.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/3.d0ad10b9.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/30.4fd4100f.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/31.aed32c45.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/32.aa23b929.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/33.f26b720f.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/34.c21d1e09.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/35.3edb6961.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/36.7dc8f7cf.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/37.06753bb2.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/38.8c8fe754.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/39.e32e2b12.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/4.c7f2a358.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/40.6a1363c1.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/5.dae10cc3.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/7.2dcd94cb.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/8.2393bb14.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/9.28bbb778.js">
+    <link rel="stylesheet" href="/zhouyunfu111.github.io/assets/css/0.styles.fe0ecf59.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div id="vuepress-theme-meteorlxy"><header class="header" style="background-size:cover;background-repeat:no-repeat;background-position:center;background-attachment:scroll;background-image:url(/assets/img/vn.jpg);" data-v-0be91240><div data-v-740e207b data-v-0be91240><nav class="navbar" data-v-740e207b><div class="container" data-v-740e207b><a href="/zhouyunfu111.github.io/" class="router-link-active" data-v-740e207b><span class="navbar-site-name" data-v-740e207b>
+          zhouyunfu Blog
+        </span></a> <div class="navbar-toggler" data-v-740e207b><svg class="icon" style="font-size:1.2em;" data-v-740e207b data-v-740e207b><title data-v-740e207b data-v-740e207b>menu</title><use xlink:href="#icon-menu" data-v-740e207b data-v-740e207b></use></svg></div> <div class="navbar-links" data-v-740e207b><a href="/zhouyunfu111.github.io/" class="navbar-link" data-v-740e207b>
+            Home
+          </a><a href="/zhouyunfu111.github.io/posts/" class="navbar-link router-link-active" data-v-740e207b>
+            Acticle
+          </a></div></div></nav> <div class="navbar-holder" style="display:none;" data-v-740e207b></div></div> <div class="banner" data-v-98d6aa8c data-v-0be91240 data-v-0be91240><div class="container" data-v-98d6aa8c><div class="center" data-v-98d6aa8c><h1 data-v-98d6aa8c data-v-0be91240>
+          es6 Proxy和Reflect
+        </h1></div></div></div></header> <div class="container clearfix show-aside" data-v-6e91a59a data-v-6e91a59a><main class="main" data-v-6e91a59a><div class="post" data-v-6e91a59a data-v-6e91a59a><section class="post-meta main-div" data-v-4e23451f><section class="post-date clearfix" data-v-4e23451f><span class="create-date" data-v-4e23451f>
+      发布时间 : 2020-05-12
+    </span> <!----></section> <section class="post-links" data-v-4e23451f><a href="/zhouyunfu111.github.io/posts/2020/05/12/es6-promise.html" class="post-link" data-v-4e23451f>
+      上一篇 : es6 promise
+    </a> <a href="/zhouyunfu111.github.io/posts/2020/06/22/es6-%E8%A7%A3%E6%9E%84%E8%B5%8B%E5%80%BC.html" class="post-link" data-v-4e23451f>
+      下一篇 : es6 解构赋值
+    </a></section></section> <article class="main-div"><div class="post-content content content__default"><h2 id="proxy"><a href="#proxy" aria-hidden="true" class="header-anchor">#</a> proxy</h2> <div class="tip custom-block"><p class="custom-block-title">TIP</p> <p><code>Proxy</code>对象用于定义基本操作的自定义行为（如属性查找，赋值，枚举，函数调用等）。</p></div> <p>语法</p> <div class="tip custom-block"><p class="custom-block-title">TIP</p> <p><code>Proxy</code>对象用于定义基本操作的自定义行为（如属性查找，赋值，枚举，函数调用等）。</p></div> <p><code>target</code></p> <div class="tip custom-block"><p class="custom-block-title">TIP</p> <p>用<code>Proxy</code>包装的目标对象（可以是任何类型的对象，包括原生数组，函数，甚至另一个代理）。</p></div> <p><code>handler</code></p> <div class="tip custom-block"><p class="custom-block-title">TIP</p> <p>一个对象，其属性是当执行一个操作时定义代理的行为的函数。</p></div> <p><code>get(target, propKey, receiver)</code>
+拦截对象属性的读取，比如<code>proxy.foo</code>和<code>proxy['foo']</code>。</p> <p><code>set(target, propKey, value, receiver)</code>
+拦截对象属性的设置，比如<code>proxy.foo = v</code>或<code>proxy['foo'] = v</code>，返回一个布尔值。</p> <p><code>has(target, propKey)</code></p> <p>拦截<code>propKey in proxy</code>的操作，返回一个布尔值。</p> <p><code>deleteProperty(target, propKey)</code></p> <p>拦截<code>delete proxy[propKey]</code>的操作，返回一个布尔值。</p> <p><code>ownKeys(target)</code></p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">//原始对象 obj</span>
+<span class="token keyword">let</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span>
+  time<span class="token punctuation">:</span><span class="token string">'2017-02-12'</span><span class="token punctuation">,</span>
+  name<span class="token punctuation">:</span><span class="token string">'net'</span><span class="token punctuation">,</span>
+  _r<span class="token punctuation">:</span><span class="token number">123</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token comment">//新成一个对象，映射obj，原始对象的代理。</span>
+<span class="token keyword">let</span> monitor <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Proxy</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span><span class="token punctuation">{</span>
+  <span class="token comment">//在读取对象时,将'2017'修改为'2018'</span>
+  <span class="token keyword">get</span><span class="token punctuation">(</span>target<span class="token punctuation">,</span>key<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">return</span> target<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token string">'2017'</span><span class="token punctuation">,</span><span class="token string">'2018'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token comment">//在设置对象时，只有key为'name'的值可被修改</span>
+  <span class="token keyword">set</span><span class="token punctuation">(</span>target<span class="token punctuation">,</span>key<span class="token punctuation">,</span>value<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>key <span class="token operator">===</span> <span class="token string">'name'</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+      <span class="token keyword">return</span> target<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">=</span> value<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
+      <span class="token keyword">return</span> target<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token comment">//在key不为'name'时，拦截in操作。</span>
+  <span class="token function">has</span><span class="token punctuation">(</span><span class="token parameter">target<span class="token punctuation">,</span>key</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>key <span class="token operator">===</span> <span class="token string">'name'</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+      <span class="token keyword">return</span> target<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token comment">//含有'_'的key才可以被deleted操作符删除</span>
+  <span class="token function">deleteProperty</span><span class="token punctuation">(</span><span class="token parameter">target<span class="token punctuation">,</span>key</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>key<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span><span class="token string">'_'</span><span class="token punctuation">)</span><span class="token operator">&gt;</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+      <span class="token keyword">delete</span> target<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">;</span>
+      <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
+      <span class="token keyword">return</span> target<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">;</span>
+      <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token comment">//拦截除了key为'time'的Object.getOwnPropertyNames(proxy)，Object.getOwnPropertySymbols(proxy)，Object.keys(proxy)</span>
+  <span class="token function">ownKeys</span><span class="token punctuation">(</span><span class="token parameter">target</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">return</span> Object<span class="token punctuation">.</span><span class="token function">keys</span><span class="token punctuation">(</span>target<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token parameter">item</span><span class="token operator">=&gt;</span>item<span class="token operator">!=</span><span class="token string">'time'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//get</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>monitor<span class="token punctuation">.</span>time<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//对象代理 '2018-02-12'</span>
+
+<span class="token comment">//set</span>
+monitor<span class="token punctuation">.</span>time <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>monitor<span class="token punctuation">.</span>time<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//'2018-02-12'</span>
+
+<span class="token comment">//has</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">has:</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token string">'time'</span> <span class="token keyword">in</span> monitor<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//has:false</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">has:</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token string">'name'</span> <span class="token keyword">in</span> monitor<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//has:true</span>
+
+<span class="token comment">//deleteProperty</span>
+<span class="token keyword">delete</span> monitor<span class="token punctuation">.</span>_r<span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>monitor<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//Proxy {time: &quot;2017-02-12&quot;, name: &quot;net&quot;}</span>
+<span class="token keyword">delete</span> monitor<span class="token punctuation">.</span>name<span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>monitor<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//Proxy {time: &quot;2017-02-12&quot;, name: &quot;net&quot;}</span>
+
+<span class="token comment">//wonKeys</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>Object<span class="token punctuation">.</span><span class="token function">keys</span><span class="token punctuation">(</span>monitor<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//[]</span>
+</code></pre></div><h2 id="reflect"><a href="#reflect" aria-hidden="true" class="header-anchor">#</a> Reflect</h2> <p>Reflect的所有属性和方法都是静态的,<code>Reflect</code>没有构造函数。</p> <div class="tip custom-block"><p class="custom-block-title">TIP</p> <p>new Reflect() //错误的写法</p></div> <p>设计目地</p> <ul><li>将Object对象的一些明显属于语言内部的方法（比如Object.defineProperty），放到Reflect对象上。</li> <li>修改某些Object方法的返回结果，让其变得更合理。</li> <li>让Object操作都变成函数行为。</li> <li>Reflect对象的方法与Proxy对象的方法一一对应，只要是Proxy对象的方法，就能在Reflect对象上找到对应的方法。</li></ul> <p>方法 (get, set, has, deleteProperty, ownKeys)</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">let</span> obj<span class="token operator">=</span><span class="token punctuation">{</span>
+  time<span class="token punctuation">:</span><span class="token string">'2017-03-11'</span><span class="token punctuation">,</span>
+  name<span class="token punctuation">:</span><span class="token string">'net'</span><span class="token punctuation">,</span>
+  _r<span class="token punctuation">:</span><span class="token number">123</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">//get</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Reflect get'</span><span class="token punctuation">,</span>Reflect<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span><span class="token string">'time'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//Reflect get 2017-03-11</span>
+
+<span class="token comment">//set</span>
+Reflect<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span><span class="token string">'name'</span><span class="token punctuation">,</span><span class="token string">'Reflect'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//{time: &quot;2017-03-11&quot;, name: &quot;Reflect&quot;, _r: 123}</span>
+
+<span class="token comment">//has</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'has'</span><span class="token punctuation">,</span>Reflect<span class="token punctuation">.</span><span class="token function">has</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span><span class="token string">'name'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//true</span>
+
+<span class="token comment">//deleteProperty</span>
+Reflect<span class="token punctuation">.</span><span class="token function">deleteProperty</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span><span class="token string">'name'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//{time: &quot;2017-03-11&quot;, _r: 123}</span>
+
+<span class="token comment">//ownKeys</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>Reflect<span class="token punctuation">.</span><span class="token function">ownKeys</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token comment">//(2) [&quot;time&quot;, &quot;_r&quot;]</span>
+</code></pre></div><h2 id="proxy和reflect实例"><a href="#proxy和reflect实例" aria-hidden="true" class="header-anchor">#</a> Proxy和Reflect实例</h2> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">//效验函数 obj 效验函数。</span>
+<span class="token keyword">function</span> <span class="token function">validator</span><span class="token punctuation">(</span><span class="token parameter">target<span class="token punctuation">,</span>validator</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Proxy</span><span class="token punctuation">(</span>target<span class="token punctuation">,</span><span class="token punctuation">{</span><span class="token comment">//返回一个proxy代理对象</span>
+    _validator<span class="token punctuation">:</span>validator<span class="token punctuation">,</span>
+    <span class="token keyword">set</span><span class="token punctuation">(</span>target<span class="token punctuation">,</span>key<span class="token punctuation">,</span>value<span class="token punctuation">,</span>proxy<span class="token punctuation">)</span><span class="token punctuation">{</span>
+      <span class="token keyword">if</span><span class="token punctuation">(</span>target<span class="token punctuation">.</span><span class="token function">hasOwnProperty</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment">//是否含有该key值。</span>
+        <span class="token keyword">let</span> va <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_validator<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span><span class="token operator">!</span><span class="token function">va</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment">//修改的value 是否符合效验函数。</span>
+
+          <span class="token keyword">return</span> Reflect<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span>target<span class="token punctuation">,</span>key<span class="token punctuation">,</span>value<span class="token punctuation">,</span>proxy<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//将值分配给属性的函数。返回一个Boolean，如果更新成功，则返回true</span>
+        <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
+          <span class="token keyword">throw</span> <span class="token function">Error</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">不能设置</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>key<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">到</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>value<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
+        <span class="token keyword">throw</span> <span class="token function">Error</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>key<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">不存在</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> personCalidators <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token function">name</span><span class="token punctuation">(</span><span class="token parameter">val</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">typeof</span> val <span class="token operator">===</span> <span class="token string">'string'</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function">age</span><span class="token punctuation">(</span><span class="token parameter">val</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">typeof</span> val <span class="token operator">===</span> <span class="token string">'number'</span> <span class="token operator">&amp;&amp;</span> val <span class="token operator">&gt;</span> <span class="token number">18</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Person</span><span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">name<span class="token punctuation">,</span>age</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> name<span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>age <span class="token operator">=</span> age<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token function">validator</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span>personCalidators<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> person <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+person<span class="token punctuation">.</span>age <span class="token operator">=</span> <span class="token number">19</span><span class="token punctuation">;</span>
+person<span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">'hmm'</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>person<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//Proxy {name: &quot;hmm&quot;, age: 19}</span>
+person<span class="token punctuation">.</span>age <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span><span class="token comment">//不能设置age到10</span>
+
+</code></pre></div></div></article> <section class="post-meta main-div" data-v-4e23451f><section class="post-date clearfix" data-v-4e23451f><span class="create-date" data-v-4e23451f>
+      发布时间 : 2020-05-12
+    </span> <!----></section> <section class="post-links" data-v-4e23451f><a href="/zhouyunfu111.github.io/posts/2020/05/12/es6-promise.html" class="post-link" data-v-4e23451f>
+      上一篇 : es6 promise
+    </a> <a href="/zhouyunfu111.github.io/posts/2020/06/22/es6-%E8%A7%A3%E6%9E%84%E8%B5%8B%E5%80%BC.html" class="post-link" data-v-4e23451f>
+      下一篇 : es6 解构赋值
+    </a></section></section> <!----></div></main> <aside class="aside" data-v-6e91a59a><div class="info-card main-div" data-v-23d90c50 data-v-6e91a59a><div class="info-card-header" data-v-23d90c50><img src="/assets/img/avatar.jpg" alt="zhouyunfu" class="info-avatar" data-v-23d90c50></div> <div class="info-card-body" data-v-23d90c50><section class="info-nickname" data-v-23d90c50>
+      zhouyunfu
+    </section> <section class="info-desc" data-v-23d90c50>Not everything that is faced can be changed, but nothing can be changed until it is faced.</section> <section class="info-contact" data-v-23d90c50><section data-v-23d90c50><span title="Chang'sha city, China" data-v-23d90c50 data-v-23d90c50><svg class="icon" style="font-size:1em;" data-v-23d90c50 data-v-23d90c50><title data-v-23d90c50 data-v-23d90c50>Chang'sha city, China</title><use xlink:href="#icon-location" data-v-23d90c50 data-v-23d90c50></use></svg><span class="info-text" data-v-23d90c50 data-v-23d90c50>
+          Chang'sha city, China
+        </span></span></section> <!----> <section data-v-23d90c50><a href="mailto:1301964096@qq.com" title="1301964096@qq.com" data-v-23d90c50 data-v-23d90c50><svg class="icon" style="font-size:1em;" data-v-23d90c50 data-v-23d90c50><title data-v-23d90c50 data-v-23d90c50>1301964096@qq.com</title><use xlink:href="#icon-email" data-v-23d90c50 data-v-23d90c50></use></svg><span class="info-text" data-v-23d90c50 data-v-23d90c50>
+          1301964096@qq.com
+        </span></a></section></section></div> <div class="info-card-footer" data-v-23d90c50><section class="info-sns clearfix" data-v-23d90c50><a href="https://github.com/zhouyunfu111" target="_blank" class="sns-link" data-v-23d90c50><span title="GitHub: zhouyunfu111" class="sns-icon" data-v-23d90c50 data-v-23d90c50><svg class="icon" style="font-size:1.5em;" data-v-23d90c50 data-v-23d90c50><title data-v-23d90c50 data-v-23d90c50>GitHub: zhouyunfu111</title><use xlink:href="#icon-github" data-v-23d90c50 data-v-23d90c50></use></svg></span></a></section></div></div> <div class="post-nav-card main-div" style="position:relative;top:0;width:0px;" data-v-6e91a59a><div class="post-nav-contents"><svg class="icon"><title>book</title><use xlink:href="#icon-book"></use></svg> <span>文章目录</span> <div class="post-nav-toc"><ul><li><a href="/zhouyunfu111.github.io/posts/2020/05/12/es6-proxy%E5%92%8Creflect.html#proxy">proxy</a></li><li><a href="/zhouyunfu111.github.io/posts/2020/05/12/es6-proxy%E5%92%8Creflect.html#reflect">Reflect</a></li><li><a href="/zhouyunfu111.github.io/posts/2020/05/12/es6-proxy%E5%92%8Creflect.html#proxy和reflect实例">Proxy和Reflect实例</a></li></ul></div></div> <!----></div></aside></div> <footer class="footer" data-v-f018ab8c><p class="footer-sns-links" data-v-f018ab8c><a href="https://github.com/zhouyunfu111" target="_blank" class="sns-link" data-v-f018ab8c><span title="GitHub: zhouyunfu111" class="sns-icon" data-v-f018ab8c data-v-f018ab8c><svg class="icon" style="font-size:25px;" data-v-f018ab8c data-v-f018ab8c><title data-v-f018ab8c data-v-f018ab8c>GitHub: zhouyunfu111</title><use xlink:href="#icon-github" data-v-f018ab8c data-v-f018ab8c></use></svg></span></a></p> <p class="footer-text" data-v-f018ab8c><span data-v-f018ab8c>Powered by </span> <a href="https://github.com/vuejs/vuepress" target="_blank" data-v-f018ab8c>
+      VuePress
+    </a> <span data-v-f018ab8c> | </span> <a href="https://github.com/meteorlxy/vuepress-theme-meteorlxy" target="_blank" data-v-f018ab8c>
+        meteorlxy
+      </a></p> <!----></footer></div><div class="global-ui"><!----><!----></div></div>
+    <script src="/zhouyunfu111.github.io/assets/js/app.a992bd44.js" defer></script><script src="/zhouyunfu111.github.io/assets/js/6.2b128785.js" defer></script><script src="/zhouyunfu111.github.io/assets/js/16.7dbb4ce7.js" defer></script>
+  </body>
+</html>

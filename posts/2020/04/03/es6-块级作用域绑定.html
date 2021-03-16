@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>es6-块级作用域的绑定 | zhouyunfu Blog</title>
+    <meta name="description" content="This is my blog">
+    <link rel="icon" href="/zhouyunfu111.github.io/assets/img/avatar.jpg">
+    
+    <link rel="preload" href="/zhouyunfu111.github.io/assets/css/0.styles.fe0ecf59.css" as="style"><link rel="preload" href="/zhouyunfu111.github.io/assets/js/app.a992bd44.js" as="script"><link rel="preload" href="/zhouyunfu111.github.io/assets/js/6.2b128785.js" as="script"><link rel="preload" href="/zhouyunfu111.github.io/assets/js/21.cb5cbbdd.js" as="script"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/1.f4587165.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/10.af1ee702.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/11.d2fc8b4e.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/12.96433f86.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/13.faa91d78.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/14.9fe00273.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/15.682e11af.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/16.7dbb4ce7.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/17.057b5467.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/18.888540aa.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/19.a1277094.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/20.6c5940f9.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/22.4040c000.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/23.24caff7b.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/24.cbc38b26.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/25.411f982b.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/26.c74a1ed4.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/27.67bb7207.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/28.a2cc8d89.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/29.84adef4b.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/3.d0ad10b9.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/30.4fd4100f.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/31.aed32c45.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/32.aa23b929.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/33.f26b720f.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/34.c21d1e09.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/35.3edb6961.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/36.7dc8f7cf.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/37.06753bb2.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/38.8c8fe754.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/39.e32e2b12.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/4.c7f2a358.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/40.6a1363c1.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/5.dae10cc3.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/7.2dcd94cb.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/8.2393bb14.js"><link rel="prefetch" href="/zhouyunfu111.github.io/assets/js/9.28bbb778.js">
+    <link rel="stylesheet" href="/zhouyunfu111.github.io/assets/css/0.styles.fe0ecf59.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div id="vuepress-theme-meteorlxy"><header class="header" style="background-size:cover;background-repeat:no-repeat;background-position:center;background-attachment:scroll;background-image:url(/assets/img/vn.jpg);" data-v-0be91240><div data-v-740e207b data-v-0be91240><nav class="navbar" data-v-740e207b><div class="container" data-v-740e207b><a href="/zhouyunfu111.github.io/" class="router-link-active" data-v-740e207b><span class="navbar-site-name" data-v-740e207b>
+          zhouyunfu Blog
+        </span></a> <div class="navbar-toggler" data-v-740e207b><svg class="icon" style="font-size:1.2em;" data-v-740e207b data-v-740e207b><title data-v-740e207b data-v-740e207b>menu</title><use xlink:href="#icon-menu" data-v-740e207b data-v-740e207b></use></svg></div> <div class="navbar-links" data-v-740e207b><a href="/zhouyunfu111.github.io/" class="navbar-link" data-v-740e207b>
+            Home
+          </a><a href="/zhouyunfu111.github.io/posts/" class="navbar-link router-link-active" data-v-740e207b>
+            Acticle
+          </a></div></div></nav> <div class="navbar-holder" style="display:none;" data-v-740e207b></div></div> <div class="banner" data-v-98d6aa8c data-v-0be91240 data-v-0be91240><div class="container" data-v-98d6aa8c><div class="center" data-v-98d6aa8c><h1 data-v-98d6aa8c data-v-0be91240>
+          es6-块级作用域的绑定
+        </h1></div></div></div></header> <div class="container clearfix show-aside" data-v-6e91a59a data-v-6e91a59a><main class="main" data-v-6e91a59a><div class="post" data-v-6e91a59a data-v-6e91a59a><section class="post-meta main-div" data-v-4e23451f><section class="post-date clearfix" data-v-4e23451f><span class="create-date" data-v-4e23451f>
+      发布时间 : 2020-04-03
+    </span> <!----></section> <section class="post-links" data-v-4e23451f><a href="/zhouyunfu111.github.io/posts/2020/01/07/vue%E5%BC%80%E5%8F%91%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98.html" class="post-link" data-v-4e23451f>
+      上一篇 : vue开发需要注意的问题!
+    </a> <a href="/zhouyunfu111.github.io/posts/2020/05/12/es6-%E7%B1%BB%E4%B8%8E%E5%AF%B9%E8%B1%A1.html" class="post-link" data-v-4e23451f>
+      下一篇 : es6 类与对象
+    </a></section></section> <article class="main-div"><div class="post-content content content__default"><h2 id="var"><a href="#var" aria-hidden="true" class="header-anchor">#</a> var</h2> <div class="tip custom-block"><p class="custom-block-title">TIP</p> <p><code>JavaScript</code>中，我们通常说的作用域是<code>函数作用域</code>，使用<code>var</code>声明的变量，无论是在代码的哪个地方声明的，都会提升到当前<code>作用域的最顶部</code>，这种行为叫做<code>变量提升（Hoisting）</code></p></div> <p>也就是说，如果在函数内部声明的变量，都会被提升到该函数开头，而在全局声明的变量，就会提升到<code>全局作用域的顶部</code>。</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">function</span> <span class="token function">test</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'1: '</span><span class="token punctuation">,</span> a<span class="token punctuation">)</span> <span class="token comment">//undefined</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token number">1</span>
+    <span class="token punctuation">}</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'3: '</span><span class="token punctuation">,</span> a<span class="token punctuation">)</span> <span class="token comment">//undefined</span>
+<span class="token punctuation">}</span>
+<span class="token function">test</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment">//实际执行时，上面的代码中的变量a会提升到函数顶部声明，即使if语句的条件是false，也一样不影响a变量提升。</span>
+<span class="token keyword">function</span> <span class="token function">test</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> a
+    <span class="token comment">//a声明没有赋值</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'1: '</span><span class="token punctuation">,</span> a<span class="token punctuation">)</span> <span class="token comment">//undefined</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      a <span class="token operator">=</span> <span class="token number">1</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">//a声明没有赋值</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'3: '</span><span class="token punctuation">,</span> a<span class="token punctuation">)</span> <span class="token comment">//undefined</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>在函数嵌套函数的场景下，变量只会提升到最近的一个函数顶部，而不会提升到外部函数。</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// b提升到函数a顶部，但不会提升到函数test。</span>
+    <span class="token keyword">function</span> <span class="token function">test</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">function</span> <span class="token function">a</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">var</span> b <span class="token operator">=</span> <span class="token number">2</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'b: '</span><span class="token punctuation">,</span> b<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    
+    <span class="token function">test</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">//b is not defined</span>
+</code></pre></div><p>如果a没有声明，那么就会报错，没有声明和声明后没有赋值是不一样的，这点一定要区分开，有助于我们找bug。</p> <div class="language-javascirpt extra-class"><pre class="language-text"><code>// a没有声明的情况
+
+a is not defined
+</code></pre></div><h2 id="let"><a href="#let" aria-hidden="true" class="header-anchor">#</a> let</h2> <div class="tip custom-block"><p class="custom-block-title">TIP</p> <p><code>let</code>和<code>const</code>都能够声明块级作用域，用法和<code>var</code>是类似的，<code>let</code>的特点是<code>不会变量提升</code>，而是被锁在当前块中。</p></div> <p>一个非常简单的例子：</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code> <span class="token keyword">function</span> <span class="token function">test</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+       <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+         console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token comment">//TDZ，俗称临时死区，用来描述变量不提升的现象</span>
+         <span class="token keyword">let</span> a <span class="token operator">=</span> <span class="token number">1</span>
+       <span class="token punctuation">}</span>
+   <span class="token punctuation">}</span>
+   <span class="token function">test</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment">// a is not defined</span>
+
+   <span class="token keyword">function</span> <span class="token function">test</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+       <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+         <span class="token keyword">let</span> a <span class="token operator">=</span> <span class="token number">1</span>
+       <span class="token punctuation">}</span>
+       console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span>
+   <span class="token punctuation">}</span>    
+   <span class="token function">test</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// a is not defined</span>
+</code></pre></div><p>唯一正确的使用方法：先声明，再访问。</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code>   <span class="token keyword">function</span> <span class="token function">test</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+       <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+         <span class="token keyword">let</span> a <span class="token operator">=</span> <span class="token number">1</span>
+         console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span>
+       <span class="token punctuation">}</span>
+   <span class="token punctuation">}</span>
+   <span class="token function">test</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// 1</span>
+</code></pre></div><h2 id="const"><a href="#const" aria-hidden="true" class="header-anchor">#</a> const</h2> <div class="tip custom-block"><p class="custom-block-title">TIP</p> <p>声明常量，一旦声明，不可更改，而且常量必须初始化赋值。</p></div> <p><code>const type = &quot;ACTION&quot;</code> 我们试试重新声明<code>type</code>，看看会报什么错：</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">const</span> type <span class="token operator">=</span> <span class="token string">&quot;ACTION&quot;</span>
+type <span class="token operator">=</span> <span class="token number">1</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>type<span class="token punctuation">)</span> <span class="token comment">//&quot;type&quot; is read-only</span>
+
+<span class="token keyword">const</span> type <span class="token operator">=</span> <span class="token string">&quot;ACTION&quot;</span>
+<span class="token keyword">let</span> type <span class="token operator">=</span> <span class="token number">1</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>type<span class="token punctuation">)</span> <span class="token comment">//Duplicate declaration &quot;type&quot;</span>
+</code></pre></div></div></article> <section class="post-meta main-div" data-v-4e23451f><section class="post-date clearfix" data-v-4e23451f><span class="create-date" data-v-4e23451f>
+      发布时间 : 2020-04-03
+    </span> <!----></section> <section class="post-links" data-v-4e23451f><a href="/zhouyunfu111.github.io/posts/2020/01/07/vue%E5%BC%80%E5%8F%91%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98.html" class="post-link" data-v-4e23451f>
+      上一篇 : vue开发需要注意的问题!
+    </a> <a href="/zhouyunfu111.github.io/posts/2020/05/12/es6-%E7%B1%BB%E4%B8%8E%E5%AF%B9%E8%B1%A1.html" class="post-link" data-v-4e23451f>
+      下一篇 : es6 类与对象
+    </a></section></section> <!----></div></main> <aside class="aside" data-v-6e91a59a><div class="info-card main-div" data-v-23d90c50 data-v-6e91a59a><div class="info-card-header" data-v-23d90c50><img src="/assets/img/avatar.jpg" alt="zhouyunfu" class="info-avatar" data-v-23d90c50></div> <div class="info-card-body" data-v-23d90c50><section class="info-nickname" data-v-23d90c50>
+      zhouyunfu
+    </section> <section class="info-desc" data-v-23d90c50>Not everything that is faced can be changed, but nothing can be changed until it is faced.</section> <section class="info-contact" data-v-23d90c50><section data-v-23d90c50><span title="Chang'sha city, China" data-v-23d90c50 data-v-23d90c50><svg class="icon" style="font-size:1em;" data-v-23d90c50 data-v-23d90c50><title data-v-23d90c50 data-v-23d90c50>Chang'sha city, China</title><use xlink:href="#icon-location" data-v-23d90c50 data-v-23d90c50></use></svg><span class="info-text" data-v-23d90c50 data-v-23d90c50>
+          Chang'sha city, China
+        </span></span></section> <!----> <section data-v-23d90c50><a href="mailto:1301964096@qq.com" title="1301964096@qq.com" data-v-23d90c50 data-v-23d90c50><svg class="icon" style="font-size:1em;" data-v-23d90c50 data-v-23d90c50><title data-v-23d90c50 data-v-23d90c50>1301964096@qq.com</title><use xlink:href="#icon-email" data-v-23d90c50 data-v-23d90c50></use></svg><span class="info-text" data-v-23d90c50 data-v-23d90c50>
+          1301964096@qq.com
+        </span></a></section></section></div> <div class="info-card-footer" data-v-23d90c50><section class="info-sns clearfix" data-v-23d90c50><a href="https://github.com/zhouyunfu111" target="_blank" class="sns-link" data-v-23d90c50><span title="GitHub: zhouyunfu111" class="sns-icon" data-v-23d90c50 data-v-23d90c50><svg class="icon" style="font-size:1.5em;" data-v-23d90c50 data-v-23d90c50><title data-v-23d90c50 data-v-23d90c50>GitHub: zhouyunfu111</title><use xlink:href="#icon-github" data-v-23d90c50 data-v-23d90c50></use></svg></span></a></section></div></div> <div class="post-nav-card main-div" style="position:relative;top:0;width:0px;" data-v-6e91a59a><div class="post-nav-contents"><svg class="icon"><title>book</title><use xlink:href="#icon-book"></use></svg> <span>文章目录</span> <div class="post-nav-toc"><ul><li><a href="/zhouyunfu111.github.io/posts/2020/04/03/es6-%E5%9D%97%E7%BA%A7%E4%BD%9C%E7%94%A8%E5%9F%9F%E7%BB%91%E5%AE%9A.html#var">var</a></li><li><a href="/zhouyunfu111.github.io/posts/2020/04/03/es6-%E5%9D%97%E7%BA%A7%E4%BD%9C%E7%94%A8%E5%9F%9F%E7%BB%91%E5%AE%9A.html#let">let</a></li><li><a href="/zhouyunfu111.github.io/posts/2020/04/03/es6-%E5%9D%97%E7%BA%A7%E4%BD%9C%E7%94%A8%E5%9F%9F%E7%BB%91%E5%AE%9A.html#const">const</a></li></ul></div></div> <!----></div></aside></div> <footer class="footer" data-v-f018ab8c><p class="footer-sns-links" data-v-f018ab8c><a href="https://github.com/zhouyunfu111" target="_blank" class="sns-link" data-v-f018ab8c><span title="GitHub: zhouyunfu111" class="sns-icon" data-v-f018ab8c data-v-f018ab8c><svg class="icon" style="font-size:25px;" data-v-f018ab8c data-v-f018ab8c><title data-v-f018ab8c data-v-f018ab8c>GitHub: zhouyunfu111</title><use xlink:href="#icon-github" data-v-f018ab8c data-v-f018ab8c></use></svg></span></a></p> <p class="footer-text" data-v-f018ab8c><span data-v-f018ab8c>Powered by </span> <a href="https://github.com/vuejs/vuepress" target="_blank" data-v-f018ab8c>
+      VuePress
+    </a> <span data-v-f018ab8c> | </span> <a href="https://github.com/meteorlxy/vuepress-theme-meteorlxy" target="_blank" data-v-f018ab8c>
+        meteorlxy
+      </a></p> <!----></footer></div><div class="global-ui"><!----><!----></div></div>
+    <script src="/zhouyunfu111.github.io/assets/js/app.a992bd44.js" defer></script><script src="/zhouyunfu111.github.io/assets/js/6.2b128785.js" defer></script><script src="/zhouyunfu111.github.io/assets/js/21.cb5cbbdd.js" defer></script>
+  </body>
+</html>
