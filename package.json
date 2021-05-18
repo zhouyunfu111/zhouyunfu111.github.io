@@ -1,21 +1,14 @@
 {
-  "name": "vue-press",
+  "name": "reco",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "dependencies": {
-    "font-awesome": "^4.7.0",
-    "vuepress": "^1.1.0",
-    "vuepress-theme-meteorlxy": "^1.5.0"
-  },
-  "devDependencies": {},
+  "author": "reco_luan",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "vuepress dev src",
-    "build": "vuepress build src --dest dist",
-    "src:build": "vuepress build src"
+    "dev": "vuepress dev . --open --host \"localhost\"",
+    "build": "vuepress build ."
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "devDependencies": {
+    "vuepress": "1.8.2",
+    "vuepress-theme-reco": "1.6.6"
+  },
+  "description": ""
 }

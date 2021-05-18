@@ -1,0 +1,23 @@
+body
+  .page
+    code
+      background-color: #fff5f5;
+      color: #ff502c;
+    .sub-sidebar-wrapper
+      font-size: 15px
+    div[class*="language-"].line-numbers-mode::after, div[class*="language-"].line-numbers-mode .line-numbers-wrapper
+      display: none 
+    pre[class*="language-"] 
+      box-shadow: 0 6px 9px rgba(0 0 0 55%)
+      padding: 4em 1.5em 1.5em !important
+      code:before 
+        position: absolute;
+        top: 16px;
+        left: 18px;
+        content: "";
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
+        background-color: #ff5f56;
+        box-shadow: 18px 0 0 0 #ffbd2e, 36px 0 0 0 #27c93f
+   
