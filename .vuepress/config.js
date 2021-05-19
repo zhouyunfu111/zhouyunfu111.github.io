@@ -22,11 +22,11 @@ module.exports = {
     [
       "@vuepress-reco/kan-ban-niang",
       {
-        "theme": ["blackCat","whiteCat"],
+        "theme": ["blackCat", "whiteCat"],
         "clean": true,
         "width": 200,
         "height": 220,
-        "modelStyle":{right: '10px',bottom: '0'}
+        "modelStyle": { right: '10px', bottom: '0' }
       }
     ],
     [
@@ -55,16 +55,17 @@ module.exports = {
         "link": "/timeline/",
         "icon": "reco-date",
       },
-      // {
-      //   "text": "Docs",
-      //   "icon": "reco-message",
-      //   "items": [
-      //     {
-      //       "text": "vuepress-reco",
-      //       "link": "/docs/theme-reco/"
-      //     }
-      //   ]
-      // },
+      {
+        "text": "Docs",
+        "icon": "reco-message",
+        "link": "/docs/tools",
+        // "items": [
+        //   {
+        //     "text": "vuepress-reco",
+        //     "link": "/docs/theme-reco/"
+        //   }
+        // ]
+      },
       {
         "text": "Contact",
         "icon": "reco-message",
