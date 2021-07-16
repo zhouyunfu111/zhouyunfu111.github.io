@@ -44,6 +44,8 @@ title: vsCode!
 - [小程序助手](https://marketplace.visualstudio.com/items?itemName=debian001.app-migrator)
 - [koroFileHeader](https://marketplace.visualstudio.com/items?itemName=OBKoro1.korofileheader)
 - [Manta's Stylus Supremacy](https://marketplace.visualstudio.com/items?itemName=thisismanta.stylus-supremacy)
+- [EditorConfig for VS Code](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)
+- [GitLens — Git supercharged](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens)
 
 ## 默认设置
 
@@ -57,13 +59,24 @@ title: vsCode!
     "node_modules/": true
   },
   "editor.tabSize": 2,
-  "terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe",
+  "terminal.integrated.profiles.windows": {
+    "Git-Bash": {
+      "path": "E:\\Git\\bin\\bash.exe"
+    },
+    "PowerShell": {
+      "source": "PowerShell",
+      "icon": "terminal-powershell"
+    }
+    // "Git Bash": {
+    //     "source": "Git Bash",
+    //     "path": "E:\\Git\\bin\\bash.exe"
+    // }
+  },
   "explorer.confirmDelete": false,
   "eslint.validate": ["javascript", "html", "vue"],
   "files.associations": {
     "*.vue ": "vue"
   },
-  "search.location": "sidebar",
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   },
@@ -84,7 +97,6 @@ title: vsCode!
   // 控制字体粗细。
   "editor.fontWeight": "normal",
   "terminal.integrated.fontFamily": "Fira Code",
-  "workbench.colorTheme": "One Dark Pro",
   "editor.renderControlCharacters": true,
   "[vue]": {
     "editor.defaultFormatter": "octref.vetur"
@@ -96,6 +108,12 @@ title: vsCode!
   "stylusSupremacy.insertNewLineAroundBlocks": false,
   "[javascript]": {
     "editor.defaultFormatter": "vscode.typescript-language-features"
-  }
+  },
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  "workbench.colorTheme": "One Dark Pro",
+  "terminal.integrated.automationShell.windows": "E:\\Git\\bin\\bash.exe",
+  "terminal.integrated.defaultProfile.windows": "Git-Bash"
 }
 ```

@@ -18,7 +18,7 @@ title: git cheat sheet
 5. [更新与发布](#更新与发布)
 6. [合并与重置](#合并与重置)
 7. [撤销](#撤销)
-8. [工作区，版本库(暂存区-stage，分支-master)图](#工作区，版本库-暂存区-stage，分支-master)
+8. [工作区，版本库(暂存区-stage，分支-master)图](<#工作区，版本库(暂存区-stage，分支-master)>)
 9. [创建与合并分支图](#创建与合并分支)
 10. [branches 图](#分支)
 11. [git folw](#git-folw)
@@ -121,7 +121,7 @@ $ git log -p <file>
 $ git blame <file>
 ```
 
----## 分支与标签
+## 分支与标签
 
 列出所有的分支：
 
@@ -130,6 +130,12 @@ $ git branch
 ```
 
 切换分支：
+
+```git
+$ git checkout <branch>
+```
+
+创建并切换分支:
 
 ```git
 $ git checkout <branch>
@@ -298,7 +304,7 @@ $ git reset <commit>
 
 ![](https://camo.githubusercontent.com/bf3edf27e29b7739e37f62a4132695d872e7b503371f198606d6bb3c24d85eb8/68747470733a2f2f692e6c6f6c692e6e65742f323031382f30332f32322f356162323932303365363133612e706e67)
 
-## git folw
+## git-folw
 
 ![](https://camo.githubusercontent.com/c143622e1058e006d2c276e088d0c03aef89ce3767d160e649f167d747643658/68747470733a2f2f692e6c6f6c692e6e65742f323031382f30332f32322f356162323933383831336138382e706e67)
 

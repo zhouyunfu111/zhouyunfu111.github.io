@@ -1,0 +1,118 @@
+---
+categories:
+  - coding
+tags:
+  - uniapp
+date: 2019-05-30
+title: uniapp学习!
+---
+
+**此篇文章作为学习笔记，部分参考于网上资料**
+
+## 前言
+
+最近接触一个项目要用 `uniapp` 做一个移动端双平台的(安卓 和 IOS),之前没有用过`uniapp`开发移动端，正好学习一下，记录一下项目中的各种问题
+
+## 什么是 uniapp?
+
+`uniapp`是一个使用 `Vue.js` 开发所有前端应用的框架，开发者编写一套代码，可发布到 `iOS、Android、Web（响应式）、以及各种小程序（微信/支付宝/百度/头条/QQ/钉钉/淘宝）、快应用`等多个平台
+
+## 快速上手
+
+uni-app 支持通过 可视化界面、vue-cli 命令行 两种方式快速创建项目。
+
+### 通过 HBuilderX 可视化界面
+
+可视化的方式比较简单，HBuilderX 内置相关环境，开箱即用，无需配置 nodejs。
+
+开始之前，开发者需先下载安装如下工具：
+
+- HBuilderX：官方 IDE 下载地址
+
+HBuilderX 是通用的前端开发工具，但为 uni-app 做了特别强化。
+
+### 通过 vue-cli 命令行
+
+**环境安装**
+
+全局安装 vue-cli
+
+```git
+npm install -g @vue/cli
+```
+
+**创建 uni-app**
+使用正式版（对应 HBuilderX 最新正式版）
+
+```git
+vue create -p dcloudio/uni-preset-vue my-project
+```
+
+使用 alpha 版（对应 HBuilderX 最新 alpha 版）
+
+## 开发中遇到的问题
+
+### uniapp 使用 font-awesome 编译后报错，图标不显示
+
+::: danger
+`错误提示：App 平台 v3 模式暂不支持在 js 文件中引用'font-awsome'请改在 style 内引用`
+:::
+
+解决方法：
+百度搜索`uniapp引入阿里图标库iconfont的三种方式`
+
+1、下载 font class 文件至本地
+
+2、解压后，将字体文件.ttf,.woff,.woff2 和 iconfont.css 一起拷贝到 static 目录下
+
+3、修改 iconfont.css 文件（非常重要），在 url 中添加 `~@/static`
+
+### 苹果(ios 端)时间日期格式不支持存在`“-”`,否则会获取不到
+
+解决方法：
+
+使用`“/”`替代`“-”`后可以正确获取到时间戳
+
+### 打包后提示本应用使用 HBuilderX 3.1.12 或对应的 cli 版本编译，而手机端 SDK 版本是 3.1.13，不匹配的版本可能造成应用异常
+
+HBuilderX1.7.0 及以上版本 uni-app 添加了运行环境版本和编译环境版本的校验机制，当两个版本不一致时会弹出如上弹框的提示。
+
+**什么时候会出现这种问题**
+情况 1：HBuilderX 版本很老，或 cli 编译器一直没升级，而云打包服务器已经升级，此时编译环境版本低，而运行环境版本高，就会报错。
+
+情况 2：使用老版 HBuilderX 打包了 App 后，后来使用新版 HBuilderX 或新版 cli 制作了 wgt 升级包。此时编译环境会高于运行环境，也会报错。
+
+情况 3：使用了 cli 或自定义基座或本地打包，虽然 HBuilderX 升级了，但这些配套并没有手动升级，也是报错。
+
+情况 4：如果 HBuilderX 版本高于 SDK 版本，有可能是 HBuilderX 在升级时出现问题，手机端基座没有升级成功。如果是这种情况，在插件管理里卸载“真机运行插件”，然后重新安装这个插件。
+
+解决方法：
+
+1、比较简单的就是全部升级，保持 HBuilderX、自定义基座、cli 项目编译器都是最新版。
+
+2、wgt 升级时遇到这个问题，首先你可以自测，看老的运行引擎和新版编译器编的 wgt 是否搭配，如果测试有问题，那不能使用 wgt 升级，请使用整包升级。
+
+如果测试正常，可以在 manifest.json 文件的源码视图中配置忽略这个提醒，在“app-plus”->"compatible" 节点下添加配置 方式如下：
+
+HBuilderX1.9.0 及以上版本新增以下配置避免弹出提示框。
+
+```json
+"app-plus": {
+    "compatible": {
+        "ignoreVersion": true //true表示忽略版本检查提示框，HBuilderX1.9.0及以上版本支持
+    },
+    //....
+}
+```
+
+以下方法可针对指定版本避免弹出提示框
+
+```json
+"app-plus": {
+    "compatible": {
+        "runtimeVersion": "1.7.0", //根据实际情况填写
+        "compilerVersion": "1.7.1" //根据实际情况填写
+    },
+    //....
+}
+```

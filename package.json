@@ -7,7 +7,9 @@
     "build": "vuepress build ."
   },
   "devDependencies": {
+    "@vuepress-reco/vuepress-plugin-kan-ban-niang": "vuepress-reco/vuepress-plugin-kan-ban-niang",
     "vuepress": "1.8.2",
+    "vuepress-plugin-meting": "^0.2.3",
     "vuepress-theme-reco": "1.6.6"
   },
   "description": ""
