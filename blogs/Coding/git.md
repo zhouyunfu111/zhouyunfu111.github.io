@@ -126,7 +126,13 @@ $ git blame <file>
 列出所有的分支：
 
 ```git
-$ git branch
+$ git branch -a
+```
+
+查看本地分支与远程分支的映射关系
+
+```git
+$ git branch -vv
 ```
 
 切换分支：
@@ -151,6 +157,12 @@ $ git branch <new-branch>
 
 ```git
 $ git branch --track <new-branch> <remote-branch>
+```
+
+创建本地分支与远程分支做映射
+
+```git
+$ git branch -u origin/分支名
 ```
 
 删除本地分支:
