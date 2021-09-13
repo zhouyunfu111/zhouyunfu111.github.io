@@ -42,7 +42,7 @@ $ git init
 显示工作路径下已修改的文件：
 
 ```git
-$ git status
+$ git status -s
 ```
 
 显示与上次提交版本文件的不同：
@@ -230,6 +230,32 @@ git push <remote> --delete <branch> (since Git v1.7.0)
 ```git
 $ git merge <branch>
 ```
+
+合并某个分支上的单个 commit:
+::: tip
+首先，用 git log 或 sourcetree 工具查看一下你想选择哪些 commits 进行合并,
+比如 feature 分支上的 commit 82ecb31 非常重要，它含有一个 bug 的修改，或其他人想访问的内容。无论什么原因，你现在只需要将 82ecb31 合并到 master，而不合并 feature 上的其他 commits，所以我们用 git cherry-pick 命令来做
+
+现在 82ecb31 就被合并到 master 分支，并在 master 中添加了 commit（作为一个新的 commit）。cherry-pick 和 merge 比较类似，如果 git 不能合并代码改动（比如遇到合并冲突），git 需要你自己来解决冲突并手动添加 commit。
+:::
+
+```git
+git checkout master
+$ git cherry-pick 82ecb31
+```
+
+合并某个分支上的一系列 commits:
+
+::: tip
+在一些特性情况下，合并单个 commit 并不够，你需要合并一系列相连的 commits。这种情况下就不要选择 cherry-pick 了，rebase 更适合。还以上例为例，假设你需要合并 feature 分支的 commit76cada ~62ecb3 到 master 分支。
+
+首先需要基于 feature 创建一个新的分支，并指明新分支的最后一个 commit：
+git checkout featuregit
+git checkout -b newbranch 62ecb3
+然后，rebase 这个新分支的 commit 到 master（--ontomaster）。76cada^ 指明你想从哪个特定的 commit 开始。
+git rebase --ontomaster 76cada^
+得到的结果就是 feature 分支的 commit 76cada ~62ecb3 都被合并到了 master 分支。
+:::
 
 将当前 HEAD 版本重置到分支中:
 

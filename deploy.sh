@@ -3,11 +3,13 @@
 # 确保脚本抛出遇到的错误
 set -e
 
+git pull
+
 git add .
 
 git commit -m '更新代码'
 
-git push origin gi-pages
+git push origin git-pages
 
 # 生成静态文件
 npm run build
