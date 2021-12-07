@@ -118,12 +118,68 @@ HBuilderX1.9.0 及以上版本新增以下配置避免弹出提示框。
 ```
 ### 苹果(ios 端)模板字符串(``)里面不能加空格和回车字符
 
-苹果系统会保留模板字符里的空格和回车，在使用模板字符串时如果字符串里不需要空格和回车最好不要加，否则会解析错误
+ios系统会模板字符串把回车和空格等都解析出来，在使用模板字符串时如果字符串里不需要空格和回车最好不要加，否则会解析错误
+
+不要为了可读性和美观而加回车和空格，在ios系统会出问题
 
 ### uniapp里view组件不能使用ref配合this.$refs获取到节点
 
 小程序和App平台不能引用 view 等内置组件。
 
 可以使用`uni.createSelectorQuery()`uni自带的选择节点方法
+
+### 在uniapp使用静态资源路径时使用@符号代替根目录
+
+推荐使用@符号来代替相对路径，使用@/static/images/goodsSort/icon-down.png。
+
+如果用到模板字符串，可使用require(`@/static/images/goodsSort/icon-down.png`)
+
+### 使用plus.downloader.createDownload下载的文件会一直存储本地
+
+plus.downloader.createDownload下载会在data/media/0/android/data/uni.(打包时的appid)/_dwnloads目录下面存在，如不删除会一直占据存储空间
+
+建议安装完之后使用plus.io.resolveLocalFileSystemURL删除
+
+### ios的实现热更新替代方案
+
+因为ios端的限制，发布新版本必须要上架苹果商店进行审核。软件应用内无法像安卓端实现整包和更新或是增量更新，可以当新版本通过审核时弹出更新提示，用户点击确定之后，使用链接跳到苹果应用商店自动进行更新版本。
+
+### scroll-view组件无法设置滚动条位置
+
+直接更改`scroll-top`的值无法让scroll-view滚动到指定位置，必须按照官方示例来
+``` js
+export default {
+  data() {
+    return {
+        scrollTop: 0,
+        old: {
+            scrollTop: 0
+        }
+    }
+  },
+  methods: {
+    upper: function(e) {
+      console.log(e)
+    },
+    lower: function(e) {
+      console.log(e)
+    },
+    scroll: function(e) {
+      console.log(e)
+      this.old.scrollTop = e.detail.scrollTop
+    },
+    goTop: function(e) {
+      this.scrollTop = this.old.scrollTop
+      this.$nextTick(() => {
+          this.scrollTop = 0
+      });
+      uni.showToast({
+          icon:"none",
+          title:"纵向滚动 scrollTop 值已被修改为 0"
+      })
+    }
+  }
+}
+```
 
 

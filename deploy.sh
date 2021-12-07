@@ -7,9 +7,9 @@ git pull
 
 git add .
 
-git commit -m '更新代码'
+git commit -m '更新'
 
-git push origin git-pages
+git push origin gh-pages
 
 # 生成静态文件
 npm run build

@@ -11,7 +11,7 @@ title: es6 promise
 
 `Promise`是一个构造函数，自己身上有`all、reject、resolve`这几个眼熟的方法，原型上有`then、catch`等同样很眼熟的方法。
 
-<img src="../../.vuepress/public/promise.png">
+<img src="../../.vuepress/public/promise.png" />
 
 ## 解决异步回调地狱 a->b,事件触发，回调
 
