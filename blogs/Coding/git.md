@@ -171,6 +171,14 @@ $ git branch -u origin/分支名
 $ git branch -d <branch>
 ```
 
+删除远程端分支：
+
+```git
+$ git push <remote> :<branch> (since Git v1.5.0)
+or
+git push <remote> --delete <branch> (since Git v1.7.0)
+```
+
 给当前版本打标签：
 
 ```git
@@ -183,6 +191,12 @@ $ git tag <tag-name>
 
 ```git
 $ git remote -v
+
+```
+本地更新远程分支列表项:
+``` git
+$ git branch -a
+$ git remote prune origin
 ```
 
 添加新的远程端：
@@ -213,14 +227,6 @@ $ git pull origin master
 
 ```git
 $ git push remote <remote> <branch>
-```
-
-删除远程端分支：
-
-```git
-$ git push <remote> :<branch> (since Git v1.5.0)
-or
-git push <remote> --delete <branch> (since Git v1.7.0)
 ```
 
 ## 合并与重置
