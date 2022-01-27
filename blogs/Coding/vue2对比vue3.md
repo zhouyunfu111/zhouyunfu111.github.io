@@ -90,6 +90,25 @@ export default {
 }
 
 ```
+目前已支持使用<script setup>语法糖,相比script语法，它具有更多优势：
+
+- 更少的样板内容，更简洁的代码。
+- 能够使用纯 Typescript 声明 props 和抛出事件。
+- 更好的运行时性能 (其模板会被编译成与其同一作用域的渲染函数，没有任何的中间代理)。
+- 更好的 IDE 类型推断性能 (减少语言服务器从代码中抽离类型的工作)。
+
+
+基本语法：
+要使用这个语法，需要将 setup attribute 添加到 <script> 代码块上：
+``` js
+<script setup>
+  console.log('hello script setup')
+</script>
+```
+里面的代码会被编译成组件 setup() 函数的内容。这意味着与普通的 <script> 只在组件被首次引入的时候执行一次不同，<script setup> 中的代码会在每次组件实例被创建的时候执行。
+
+
+
 
 这里构造的反应性数据就可以被`template`使用，可以通过`state.username`和`state.password`获得数据的值。
 
