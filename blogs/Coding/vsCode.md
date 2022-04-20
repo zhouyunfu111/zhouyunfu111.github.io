@@ -46,6 +46,11 @@ title: vsCode!
 - [Manta's Stylus Supremacy](https://marketplace.visualstudio.com/items?itemName=thisismanta.stylus-supremacy)
 - [EditorConfig for VS Code](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)
 - [GitLens — Git supercharged](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens)
+- [Git History](https://marketplace.visualstudio.com/items?itemName=donjayamanne.githistory)
+
+- 说明: 显示git上传记录, 文件修改的记录对比分支或者提交记录
+
+- [background](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
 
 ## 默认设置
 
@@ -114,6 +119,28 @@ title: vsCode!
   },
   "workbench.colorTheme": "One Dark Pro",
   "terminal.integrated.automationShell.windows": "E:\\Git\\bin\\bash.exe",
-  "terminal.integrated.defaultProfile.windows": "Git-Bash"
+  "terminal.integrated.defaultProfile.windows": "Git-Bash",
+  "git.autofetch": true,
+    "docthis.includeDescriptionTag": true,
+        //background
+    "background.enabled": true,
+    "background.useDefault": false,
+    "background.customImages": [
+       // "file:///F:/img/wallhaven.jpg"
+        "file:///F:/img/vn.jpg"
+       // "file:///F:/img/4.jpeg"
+    ],
+    "background.style": {
+        "content": "''",
+        "pointer-events": "none",
+        "position": "absolute",
+        "z-index": "99999",
+        "width": "100%",
+        "height": "100%",
+        "background-position": "center",
+        "background-repeat": "no-repeat",
+        "background-size": "100%,100%",
+        "opacity": 0.20
+    }
 }
 ```

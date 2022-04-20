@@ -185,10 +185,10 @@ export default {
     pVisible:Boolean
   },
    setup(props,context){
-        const control=()=>{
-            context.emit('update: pVisible',!props.pVisible)
-        }
-        return{control}
+      const control=()=>{
+          context.emit('update: pVisible',!props.pVisible)
+      }
+      return{control}
     }
 }
 </script>

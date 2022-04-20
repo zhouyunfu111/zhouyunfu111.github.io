@@ -281,5 +281,32 @@ socket.addEventListener("error", function(event) {
 
 - WebSocket-Node
 
+### 扩展
+
+- SockJs
+
+`SockJS`是一个`JavaScript`库，为了应对许多浏览器不支持`WebSocket`协议的问题，设计了备选`SockJs`。`SockJS` 是 `WebSocket` 技术
+
+的一种模拟。`SockJS`会尽可能对应 `WebSocket API`，但如果 `WebSocket` 技术不可用的话，会自动降为轮询的方式。
+
+SockJS会优先选择WebSocket进行连接，但是当服务器或客户端不支持WebSocket时，会自动在 XHR流、XDR流、iFrame事件源、iFrame HTML文件、
+
+XHR轮询、XDR轮询、iFrame XHR轮询、JSONP轮询 这几个方案中择优进行连接
+
+- Stompjs
+
+SockJS 为 WebSocket 提供了 备选方案。但无论哪种场景，对于实际应用来说，这种通信形式层级过低。 STOMP协议，来为浏览器 和 server 间的 
+
+通信增加适当的消息语义。
+
+WebSocket、SockJs、STOMP三者关系
+
+简而言之，WebSocket 是底层协议，SockJS 是WebSocket 的备选方案，也是底层协议，而 STOMP 是基于 WebSocket（SockJS）的上层协议。
+
+1.HTTP协议解决了 web 浏览器发起请求以及 web 服务器响应请求的细节，假设 HTTP 协议 并不存在，只能使用 TCP 套接字来 编写 web 应用，那将是一件非常痛苦的事情。
+
+2.直接使用 WebSocket（SockJS） 就很类似于 使用 TCP 套接字来编写 web 应用，因为没有高层协议，就需要我们定义应用间所发送消息的语义，还需要确保连接的两端都能遵循这些语义；
+
+3.同HTTP在TCP 套接字上添加请求-响应模型层一样，STOMP在WebSocket 之上提供了一个基于帧的线路格式层，用来定义消息语义；
 
 

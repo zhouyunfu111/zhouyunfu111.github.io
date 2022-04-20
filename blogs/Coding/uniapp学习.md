@@ -122,6 +122,14 @@ ios系统会模板字符串把回车和空格等都解析出来，在使用模�
 
 不要为了可读性和美观而加回车和空格，在ios系统会出问题
 
+### 苹果(ios 端)如何进行开发调式
+
+1.首先要下载 [iTunes](https://www.apple.com.cn/itunes/),之前使用的版本是12.11.3.17
+
+2.用数据线链接pc苹果手机，打开HBuilder X
+
+3.在苹果手机里打开设置->信任可选项目->将HBuilder X设为信任项
+
 ### uniapp里view组件不能使用ref配合this.$refs获取到节点
 
 小程序和App平台不能引用 view 等内置组件。
@@ -184,4 +192,26 @@ export default {
 ## uniapp想用安装包做程序覆盖更新，可是安装之后，在手机上会出现两个相同名称的软件，不会覆盖之前装的软件
 
 因为uni-app的应用标识(appid)没有统一导致系统会认为这是一个新的软件，不会覆盖安装。解决办法：使用统一的appid，不要随意更改appid，否则会导致热更新失败，或者插件失效等问题。
+
+
+## 使用uniapp真机调式报错`request:fail abort statusCode:-1 java.security.cert.CertPathValidatorException: Trust a`
+
+最近使用uni.request请求升级服务器报错了,去网上搜索说是服务器端的证书问题。参考说是有些CA的中间证书下载地址因为种种原因被“墙”掉了，也会
+
+造成我们无法获得中间证书，进而无法建立可信链接。[myssl](https://www.myssl.cn/home/article-0406-42.html)。但后面排查发现切换
+
+wifi后居然可以正常访问。最后发现这个可能和阿里云服务器有关，可能生成的域名证书有问题。
+
+
+## 在app端使用toLocaleString去转换Date对象时和浏览器生成的字符格式不一样
+
+在app端去使用toLocaleString转换Date时间对象时，发现和浏览器生成的字符会不一样,app端转换后为 `Wed Apr 20 2022 10:24:48 GMT
+
++0800 (CST)`。所以在app端使用toLocaleString转换字符去做操作的时候要注意
+
+
+
+
+
+
 
