@@ -9,7 +9,8 @@ title: vue3碰到的问题 !
 ---
 
 ## vue3+ts声明全局过滤器后，在编辑器内使用报ts错误
-挂载全局属性和方法，使用app.config.globalProperties， 但是在组件中获取全局上下文的时候getCurrentInstance会报错。
+
+挂载全局属性和方法，使用app.config.globalProperties， 但是在组件中获取全局上下文的时候`getCurrentInstance`会报错。
 
 在main.js中
 ``` js 
@@ -25,13 +26,13 @@ app.mount('#app')
 ```
 页面中：
 
-``` js
+``` js 
 <template>
 <div class='container'>
   <div>获取全局</div>
 </div>
 </template>
-```
+
 
 <script>
 import { getCurrentInternce } from 'vue'
@@ -46,3 +47,4 @@ export default {
   }
 }
 </script>
+```
