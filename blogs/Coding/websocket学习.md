@@ -201,13 +201,13 @@ ws.onmessage = function(event){
 ws.binaryType = "blob";
 ws.onmessage = function(e) {
   console.log(e.data.size);
-};
+}
 
 // 收到的是 ArrayBuffer 数据
 ws.binaryType = "arraybuffer";
 ws.onmessage = function(e) {
   console.log(e.data.byteLength);
-};
+}
 ```
 
 ### webSocket.send()
@@ -309,4 +309,108 @@ WebSocket、SockJs、STOMP三者关系
 
 3.同HTTP在TCP 套接字上添加请求-响应模型层一样，STOMP在WebSocket 之上提供了一个基于帧的线路格式层，用来定义消息语义；
 
+## websocket订阅时可以添加自定义头部
 
+在订阅websocket消息服务时，可以添加自定义头部参数，来设定消息过期时间，是否手动确认消息，消息最大长度等。
+
+``` js
+  subscribe(topic,callback,headers){
+		console.log('订阅消息',{topic,callback,headers})
+		//订阅地址
+		this.client.subscribe(topic,async (message) =>{
+			let data = JSON.parse(JSON.parse(message.body))
+			console.log('来新消息了',data)
+			if( headers['client-staticdata'] ){
+				let initData = this.updateOrderStatus(data,'_message')
+				console.log('计算结果',initData)
+				callback(data,initData,message)
+			}else{
+				callback(data,message)
+			}
+		
+			console.log('消息消费',message)
+			message.ack()
+		},{
+			'durable': true,
+			'prefetch-count': 30,
+			'auto-delete': false,
+			'x-message-ttl': 1000 * 60 * 60 * 6,
+			'ack':'client',
+			...headers
+		});
+	}
+```
+1.x-message-ttl：Number
+
+1个发布的消息在队列中存在多长时间后被取消（单位毫秒）
+*可以对单个消息设置过期时间
+
+2.x-expires：Number
+
+当Queue（队列）在指定的时间未被访问，则队列将被自动删除。
+
+3.x-max-length：Number
+
+队列所能容下消息的最大长度。当超出长度后，新消息将会覆盖最前面的消息，类似于Redis的LRU算法。
+
+4.x-max-length-bytes：Number
+
+限定队列的最大占用空间，当超出后也使用类似于Redis的LRU算法。
+
+5.x-overflow：String
+
+设置队列溢出行为。这决定了当达到队列的最大长度时，消息会发生什么。有效值为Drop Head或Reject Publish。
+* queue溢出行为，这将决定当队列达到设置的最大长度或者最大的存储空间时发送到消息队列的消息的处理方式；
+* 有效的值是：
+* drop-head（删除queue头部的消息）、
+* reject-publish（最近发来的消息将被丢弃）、
+* reject-publish-dlx（拒绝发送消息到死信交换器）
+* 类型为quorum 的queue只支持drop-head;
+
+6.x-dead-letter-exchange：String
+
+有时候我们希望当队列的消息达到上限后溢出的消息不会被删除掉，而是走到另一个队列中保存起来。
+
+7.x-dead-letter-routing-key：String
+
+如果不定义，则默认为溢出队列的routing-key，因此，一般和6一起定义。
+
+8.x-max-priority：Number
+
+如果将一个队列加上优先级参数，那么该队列为优先级队列。
+
+1）、给队列加上优先级参数使其成为优先级队列
+  x-max-priority=10【值不要太大，本质是一个树结构】
+
+2）、给消息加上优先级属性
+  通过优先级特性，将一个队列编程stack（堆栈）
+
+9.x-queue-mode：String
+
+队列类型　　x-queue-mode=lazy　　懒队列，在磁盘上尽可能多地保留消息以减少RAM使用；如果未设置，则队列将保留内存缓存以尽可能快地传递消息。
+
+10.x-queue-master-locator：String
+
+将队列设置为主位置模式，确定在节点集群上声明时队列主位置所依据的规则。
+
+## websocket断开重连之后会出现第一条消息丢失的情况
+
+解决办法： 前端把自动确认消息消费改为手动确认消息消费。后台也要做对应的处理
+
+## 华为鸿蒙系统上onLoad里使用uni.navigateTo跳转页面出现无法正常跳转的问题
+
+最近在华为平板上跳转页面出现了问题，本应该是点击按钮跳转到一个用于过渡的中间件页面(用来先把屏幕旋转成横屏之后在去跳转到真正的页面)。可是卡
+
+在了中间件页面无法跳转。
+
+解决办法：在onLoad里面使用`setTimeout`延迟一秒之后在执行`uni.redirectTo`去跳转。
+
+总结：不太清楚为啥会出这个问题，可能跟鸿蒙系统的兼容性有关。可以尝试其他跳转方法
+
+## 华为鸿蒙系统上从竖屏转横屏之后的页面样式全部错乱
+
+在华为平板上先是竖屏然后通过`uniapp`自带的api方法去旋转屏幕到横屏，横屏页面的样式全部错乱了。
+
+解决办法：把横屏页面的样式的像素单位从rpx改为vw和vh这种
+
+总结：不同机型会存在不一样的差异可能是系统导致，uniapp的rpx不支持动态横屏竖屏切换计算，使用rpx建议锁定屏幕方向
