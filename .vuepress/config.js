@@ -19,8 +19,16 @@ module.exports = {
     ]
   ],
   plugins: [
+     // 支持中文文件名
+     [
+      "permalink-pinyin",
+      {
+        lowercase: true, // Converted into lowercase, default: true
+        separator: "-", // Separator of the slug, default: '-'
+      },
+    ],
     [
-      "@vuepress-reco/kan-ban-niang",
+      "@vuepress-reco/kan-ban-niang",  //看板娘
       {
         "theme": ["blackCat", "whiteCat"],
         "clean": true,
@@ -30,7 +38,7 @@ module.exports = {
       }
     ],
     [
-      "meting",
+      "meting",  //音乐播放器
       {
         meting: {
           auto: 'https://music.163.com/playlist?id=2004526164'
@@ -40,7 +48,16 @@ module.exports = {
           mini: true,
         }
       }
-    ]
+    ],
+    // "sakura", {
+    //   num: 20,  // 默认数量
+    //   show: true, //  是否显示
+    //   zIndex: -1,   // 层级
+    //   img: {
+    //     replace: false,  // false 默认图 true 换图 需要填写httpUrl地址
+    //     httpUrl: '...'     // 绝对路径
+    //   }     
+    // }
   ],
   "theme": "reco",
   "themeConfig": {
