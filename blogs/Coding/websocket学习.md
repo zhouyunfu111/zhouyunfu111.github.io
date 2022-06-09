@@ -3,7 +3,7 @@ categories:
   - coding
 tags:
   - 通信协议
-date: 2019-05-30
+date: 2022-03-20
 title: WebSocket 学习!
 ---
 
@@ -295,7 +295,7 @@ XHR轮询、XDR轮询、iFrame XHR轮询、JSONP轮询 这几个方案中择优�
 
 - Stompjs
 
-SockJS 为 WebSocket 提供了 备选方案。但无论哪种场景，对于实际应用来说，这种通信形式层级过低。 STOMP协议，来为浏览器 和 server 间的 
+Stompjs 为 WebSocket 提供了 备选方案。但无论哪种场景，对于实际应用来说，这种通信形式层级过低。 STOMP协议，来为浏览器 和 server 间的 
 
 通信增加适当的消息语义。
 
@@ -392,6 +392,10 @@ WebSocket、SockJs、STOMP三者关系
 10.x-queue-master-locator：String
 
 将队列设置为主位置模式，确定在节点集群上声明时队列主位置所依据的规则。
+
+## websocket断开重新订阅后每次都会在rebbitMQ上重新创建一条不一样的队列
+
+解决办法：需要与后端统一消息订阅地址的规则，否则每次断开重连之后会重新创建一条新的队列
 
 ## websocket断开重连之后会出现第一条消息丢失的情况
 
