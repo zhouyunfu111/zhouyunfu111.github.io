@@ -49,15 +49,15 @@ module.exports = {
         }
       }
     ],
-    // "sakura", {
-    //   num: 20,  // 默认数量
-    //   show: true, //  是否显示
-    //   zIndex: -1,   // 层级
-    //   img: {
-    //     replace: false,  // false 默认图 true 换图 需要填写httpUrl地址
-    //     httpUrl: '...'     // 绝对路径
-    //   }     
-    // }
+    "sakura", {
+      num: 20,  // 默认数量
+      show: true, //  是否显示
+      zIndex: -1,   // 层级
+      img: {
+        replace: false,  // false 默认图 true 换图 需要填写httpUrl地址
+        httpUrl: '...'     // 绝对路径
+      }     
+    }
   ],
   "theme": "reco",
   "themeConfig": {
@@ -135,10 +135,10 @@ module.exports = {
     "search": true,
     "searchMaxSuggestions": 10,
     "lastUpdated": "Last Updated",
-    "author": "",
+    "author": "zhouyunfu",
     "authorAvatar": "/avatar.jpg",
     // "record": "xxxx", 备案号
-    "startYear": "zhouyunfu 2019"
+    "startYear": "2019"
   },
   "markdown": {
     "lineNumbers": true

@@ -1,7 +1,7 @@
 ---
 home: true
 heroText: zhouyunfu
-tagline: 时间不在于你拥有多少，而在于你怎样使用.
+tagline: 要么忙着活，要么忙着死.
 # heroImage: /hero.png
 # heroImageStyle: {
 #   maxWidth: '600px',

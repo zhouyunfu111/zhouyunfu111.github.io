@@ -19,8 +19,7 @@ WebSocket是一种网络通信协议，很多高级功能都需要它。
 
 举例来说，我们想了解今天的天气，只能是客户端向服务器发出请求，服务器返回查询结果。`HTTP` 协议做不到服务器主动向客户端推送信息。
 
-<img src='../../.vuepress/public/bg2017051507.jpg' />
-
+<img src="https://www.ruanyifeng.com/blogimg/asset/2017/bg2017051507.jpg" alt="" title="" />
 这种单向请求的特点，注定了如果服务器有连续的状态变化，客户端要获知就非常麻烦。我们只能使用"轮询"：每隔一段时候，就发出一个询问，了解
 
 服务器有没有新的信息。最典型的场景就是聊天室。
@@ -49,7 +48,9 @@ WebSocket是一种网络通信协议，很多高级功能都需要它。
 6. 协议标识符是`ws`（如果加密，则为`wss`），服务器网址就是 URL。
 
 ``` html
+
 ws://example.com:80/some/path
+
 ```
 
 ## 客户端的简单示例
@@ -120,7 +121,6 @@ readyState属性返回实例对象的当前状态，共有四种。
   default:
     // this never happens
     break;
-}
 ```
 
 ### 4.3 webSocket.onopen

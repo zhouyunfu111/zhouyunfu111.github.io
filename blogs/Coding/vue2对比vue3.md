@@ -90,7 +90,7 @@ export default {
 }
 
 ```
-目前已支持使用<script setup>语法糖,相比script语法，它具有更多优势：
+目前已支持使用`<script setup>`语法糖,相比script语法，它具有更多优势：
 
 - 更少的样板内容，更简洁的代码。
 - 能够使用纯 Typescript 声明 props 和抛出事件。
@@ -99,13 +99,13 @@ export default {
 
 
 基本语法：
-要使用这个语法，需要将 setup attribute 添加到 <script> 代码块上：
+要使用这个语法，需要将 setup attribute 添加到 `<script>` 代码块上：
 ``` js
 <script setup>
   console.log('hello script setup')
 </script>
 ```
-里面的代码会被编译成组件 setup() 函数的内容。这意味着与普通的 <script> 只在组件被首次引入的时候执行一次不同，<script setup> 中的代码会在每次组件实例被创建的时候执行。
+里面的代码会被编译成组件 setup() 函数的内容。这意味着与普通的 `<script>` 只在组件被首次引入的时候执行一次不同，`<script setup>` 中的代码会在每次组件实例被创建的时候执行。
 
 
 
