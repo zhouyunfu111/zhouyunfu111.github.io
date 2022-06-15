@@ -316,7 +316,7 @@ WebSocket、SockJs、STOMP三者关系
 ``` js
   subscribe(topic,callback,headers){
 		console.log('订阅消息',{topic,callback,headers})
-		//订阅地址
+		//订阅地址 
 		this.client.subscribe(topic,async (message) =>{
 			let data = JSON.parse(JSON.parse(message.body))
 			console.log('来新消息了',data)
@@ -331,11 +331,11 @@ WebSocket、SockJs、STOMP三者关系
 			console.log('消息消费',message)
 			message.ack()
 		},{
-			'durable': true,
-			'prefetch-count': 30,
-			'auto-delete': false,
-			'x-message-ttl': 1000 * 60 * 60 * 6,
-			'ack':'client',
+			'durable': true,  //消息设置持久化
+			'prefetch-count': 30, // 每次发给消费者的最大消息数
+			'auto-delete': false, //是否自动删除队列
+			'x-message-ttl': 1000 * 60 * 60 * 6, // 消息设置过期时间
+			'ack':'client', //客户端手动确认消息
 			...headers
 		});
 	}
@@ -393,11 +393,21 @@ WebSocket、SockJs、STOMP三者关系
 
 将队列设置为主位置模式，确定在节点集群上声明时队列主位置所依据的规则。
 
-## websocket断开重新订阅后每次都会在rebbitMQ上重新创建一条不一样的队列
+## websocket每次重连后队列名称不一致，导致接收不到消息
 
-解决办法：需要与后端统一消息订阅地址的规则，否则每次断开重连之后会重新创建一条新的队列
+最近碰到websocket重连后发现rebbitMQ交换机上的队列名会跟上一次的不一致，导致生产者消息产生的消息和消费者要消费的队列不一致。
 
+解决办法：需要与后端统一消息订阅地址的规则，确保生产者和消费都处于同一个队列中，在订阅自定义头部里面添加一个x-queue-name用来规范队列名
+
+称，否则每次断开重连之后会重新创建一条新的队列,导致接收不到消息
+``` js
+uni.WebScoket.subscribe('/exchange/exchange.create.app/routingKey.' + tag, (res) => {
+   uni.$u.debounce(this.initData, 1000, false)
+},{ 'x-queue-name': 'exchange.create.app,queue.app,routingKey.' + tag , 'client-staticdata': true})
+```
 ## websocket断开重连之后会出现第一条消息丢失的情况
+
+最近碰到websocket断网重连后发现，生产者产生的第一条消息会丢失的情况。
 
 解决办法： 前端把自动确认消息消费改为手动确认消息消费。后台也要做对应的处理
 
@@ -407,9 +417,9 @@ WebSocket、SockJs、STOMP三者关系
 
 在了中间件页面无法跳转。
 
-解决办法：在onLoad里面使用`setTimeout`延迟一秒之后在执行`uni.redirectTo`去跳转。
+解决办法：在onLoad里面执行`uni.redirectTo`去跳转。
 
-总结：不太清楚为啥会出这个问题，可能跟鸿蒙系统的兼容性有关。可以尝试其他跳转方法
+总结：不太清楚为啥会出这个问题，可能跟鸿蒙系统的兼容性有关。可以尝试用redirectTo方法去跳转
 
 ## 华为鸿蒙系统上从竖屏转横屏之后的页面样式全部错乱
 
@@ -418,3 +428,20 @@ WebSocket、SockJs、STOMP三者关系
 解决办法：把横屏页面的样式的像素单位从rpx改为vw和vh这种
 
 总结：不同机型会存在不一样的差异可能是系统导致，uniapp的rpx不支持动态横屏竖屏切换计算，使用rpx建议锁定屏幕方向
+``` css
+@function calcVw($px) {
+		@return ($px / 1280 * 100) + vw; 
+	}
+@function calcVh($px) {
+  @return ($px / 750 * 100) + vh; 
+}
+.over{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: calcVw(48);
+  transform: rotateZ(90deg);
+}
+```

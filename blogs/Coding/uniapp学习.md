@@ -3,7 +3,7 @@ categories:
   - coding
 tags:
   - uniapp
-date: 2019-05-30
+date: 2022-04-20
 title: uniapp学习!
 ---
 
@@ -142,7 +142,7 @@ ios系统会模板字符串把回车和空格等都解析出来，在使用模�
 
 如果用到模板字符串，可使用require(`@/static/images/goodsSort/icon-down.png`)
 
-### 使用plus.downloader.createDownload下载的文件会一直存储本地
+### 使用plus.downloader.\
 
 plus.downloader.createDownload下载会在data/media/0/android/data/uni.(打包时的appid)/_dwnloads目录下面存在，如不删除会一直占据存储空间
 
