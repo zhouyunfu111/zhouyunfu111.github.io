@@ -4,7 +4,7 @@ categories:
   - coding
 tags:
   - js
-date: 2019-05-29
+date: 2021-11-20
 title: JavaScript 算法!
 ---
 
@@ -74,5 +74,24 @@ function findTreeLine(tree, id) {
 findTreeLine(data,111)
 ```
 
+## 二分查找法(折半查找)
 
+二分查找法在某些情况下比顺序查找效率更高，但是算法的使用的前提是需要查找的数据必须是有序的
 
+``` js
+let start = 0
+let end = positionArr.length
+while (start < end) {
+  const middleIndex = (start + end) >> 1
+  const middleValue = positionArr[middleIndex].top
+  if (target === middleValue) {
+    return middleIndex + 1
+  } else if (middleValue < target) {
+    start = middleIndex + 1
+  } else if (middleValue > target) {
+    end = middleIndex - 1
+  }
+}
+
+return middleIndex
+```

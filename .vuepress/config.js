@@ -41,7 +41,10 @@ module.exports = {
       "meting",  //音乐播放器
       {
         meting: {
-          auto: 'https://music.163.com/playlist?id=2004526164'
+          auto: 'https://music.163.com/#/playlist?id=2004526164',
+          // server: 'netease',
+          // type: 'playlist',
+          // mid: '2004526164'
         },
         aplayer: {
           fixed: true,
@@ -59,14 +62,14 @@ module.exports = {
       }     
     }
   ],
-  "theme": "reco",
+  "theme": "reco",  //使用的主题
   "themeConfig": {
     "subSidebar": 'auto', // 详情页右侧菜单栏
     valineConfig: {
       appId: '6IQgUQRj724d18tNK272WegB-gzGzoHsz',// valineConfig your appId
       appKey: 'X2OdmO3esgrgbDSkkXvuyQJx', // valineConfig your appKey
     },
-    "nav": [
+    "nav": [ //头部导航栏
       {
         "text": "TimeLine",
         "link": "/timeline/",
@@ -117,7 +120,7 @@ module.exports = {
     // "socialLinks": [     // 信息栏展示社交信息
     //   { icon: 'reco-github', link: 'https://github.com/zhouyunfu111' }
     // ],
-    "friendLink": [
+    "friendLink": [ //友情链接
       {
         "title": "午后南杂",
         "desc": "Enjoy when you can, and endure when you must.",
@@ -131,8 +134,8 @@ module.exports = {
         "link": "https://vuepress-theme-reco.recoluan.com"
       }
     ],
-    "logo": "/avatar.jpg",
-    "search": true,
+    "logo": "/avatar.jpg", //logo图标
+    "search": true, //是否开启搜索
     "searchMaxSuggestions": 10,
     "lastUpdated": "Last Updated",
     "author": "zhouyunfu",
