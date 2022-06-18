@@ -217,8 +217,8 @@ function(){}  instanceof Object // true
 >我们可以直接调用Object原型上未被覆盖的toString()方法，使用call来改变this指向来达到我们想要的效果。
 :::
 
-| 调用                   | 结果           |
-| -------------          | ------------- |
+| 调用                    | 结果           |
+| -------------           | ------------- |
 | `Object.prototype.toString.call(true)`          | `[object Boolean]`     |
 | `Object.prototype.toString.call(1874)`          | `[object Number]`      |
 | `Object.prototype.toString.call('hello')`       | `[object String]`      |

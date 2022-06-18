@@ -411,6 +411,8 @@ uni.WebScoket.subscribe('/exchange/exchange.create.app/routingKey.' + tag, (res)
 
 解决办法： 前端把自动确认消息消费改为手动确认消息消费。后台也要做对应的处理
 
+总结：rebbmitMQ的消息机制原因，第一条消息发送出去了，但是没有回应。rebbmitMQ消息服务器会认为你已经接收了，可以在自定义头里设置 `ack: client`, //客户端手动确认消息
+
 ## 华为鸿蒙系统上onLoad里使用uni.navigateTo跳转页面出现无法正常跳转的问题
 
 最近在华为平板上跳转页面出现了问题，本应该是点击按钮跳转到一个用于过渡的中间件页面(用来先把屏幕旋转成横屏之后在去跳转到真正的页面)。可是卡
@@ -423,11 +425,14 @@ uni.WebScoket.subscribe('/exchange/exchange.create.app/routingKey.' + tag, (res)
 
 ## 华为鸿蒙系统上从竖屏转横屏之后的页面样式全部错乱
 
-在华为平板上先是竖屏然后通过`uniapp`自带的api方法去旋转屏幕到横屏，横屏页面的样式全部错乱了。
+在华为平板上先是竖屏然后通过`uniapp`自带的api方法去旋转屏幕到横屏，横屏页面的样式全部错乱了。其他平板从旋转切换后到，也会出现延样式方面
+的问题
 
-解决办法：把横屏页面的样式的像素单位从rpx改为vw和vh这种
+解决办法：对于需要在竖屏和横屏来换切换的应用，页面的样式的像素单位应该要从rpx改为vw和vh这种相对单位来开发
 
-总结：不同机型会存在不一样的差异可能是系统导致，uniapp的rpx不支持动态横屏竖屏切换计算，使用rpx建议锁定屏幕方向
+总结：不同机型会存在不一样的差异可能是系统导致，uniapp的`rpx`不支持动态横屏竖屏切换计算，使用`rpx`建议锁定屏幕方向，使用vw相对单位来解
+
+决，通过设计图给出的基础展示单位除于整个设计图的最大宽度(或者高度)在乘于100那么就得出了相对去当前窗口的大小
 ``` css
 @function calcVw($px) {
 		@return ($px / 1280 * 100) + vw; 
@@ -435,13 +440,17 @@ uni.WebScoket.subscribe('/exchange/exchange.create.app/routingKey.' + tag, (res)
 @function calcVh($px) {
   @return ($px / 750 * 100) + vh; 
 }
-.over{
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: calcVw(48);
-  transform: rotateZ(90deg);
+.app-header {
+  height: calcVh(102);
+  line-height: calcVh(102);
+
+  text {
+    font-size: calcVw(34);
+    font-family: Microsoft YaHei;
+    font-weight: 400;
+    line-height: calcVh(36);
+    color: #F4F4F4;
+    margin-left: calcVw(32);
+  }
 }
 ```

@@ -79,19 +79,52 @@ findTreeLine(data,111)
 二分查找法在某些情况下比顺序查找效率更高，但是算法的使用的前提是需要查找的数据必须是有序的
 
 ``` js
-let start = 0
-let end = positionArr.length
-while (start < end) {
-  const middleIndex = (start + end) >> 1
-  const middleValue = positionArr[middleIndex].top
-  if (target === middleValue) {
-    return middleIndex + 1
-  } else if (middleValue < target) {
-    start = middleIndex + 1
-  } else if (middleValue > target) {
-    end = middleIndex - 1
+function getMidIndex(arr,target) {
+  let start = 0
+  let end = arr.length
+  while (start < end) {
+    const middleIndex = Math.floor((start + end) / 2)
+    const middleValue = arr[middleIndex]
+    console.log(middleValue,target)
+    if (target === middleValue) {
+      return middleIndex + 1
+    } else if (middleValue < target) {
+      start = middleIndex + 1
+    } else if (middleValue > target) {
+      end = middleIndex - 1
+    }
   }
+
+  return middleIndex
 }
 
-return middleIndex
+getMidIndex([2,5,7,18,19,20,23,24,25,28],24)
+
 ```
+
+## 给定一个字符串 s ，找到 它的第一个不重复的字符，并返回它的索引 。如果不存在，则返回 -1 
+
+``` js
+const firstUniqChar = function(s) {
+  for(let i in s){
+    if(s.indexOf(s[i]) === s.lastIndexOf(s[i])){
+      return i
+    }
+  }
+  return -1;
+}
+```
+总结：利用了indexOf和lastIndexOf的特点，判断一个字符的从开始找到的位置和结束开始找到位置，是否都处于一个位置上。如果是那么就认定这个字符是不重复且是第一个
+## 给定一个整数数组 nums 和一个整数目标值 target，请你在该数组中找出 和为目标值 target 的那 两个 整数，并返回它们的数组下标。
+
+``` js
+const twoSum = function (nums,target) {
+  nums.forEach((el,index) => {
+    const indexVal = nums.findIndex(item => el + item === target)
+    if(index !== -1){
+      return [index,indexVal]
+    }
+  });
+}
+```
+
