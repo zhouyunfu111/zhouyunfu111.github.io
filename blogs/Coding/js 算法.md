@@ -121,10 +121,12 @@ const firstUniqChar = function(s) {
 const twoSum = function (nums,target) {
   nums.forEach((el,index) => {
     const indexVal = nums.findIndex(item => el + item === target)
-    if(index !== -1){
+    if(indexVal !== -1){
       return [index,indexVal]
     }
   });
 }
+twoSum([2,3,6,7,8,9,10,12,13,14],5)
+
 ```
 
