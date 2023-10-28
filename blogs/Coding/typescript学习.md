@@ -82,6 +82,79 @@ function add(num1: number, num2: number){
 cnosole.log(add(+num1.value, +num1.value))
 ```
 
+# 类的定义
+## .继承
+类的继承通过 extends 和super来实现继承
+``` js
+class Person {
+  name: string;
+
+  constructor(name: string){
+    this.name 
+  }
+
+  run():string{
+    return `${this.name}开始运动`
+  }
+}
+
+class web extends Person {
+
+  constructor(name: string){
+    super(name)
+  }
+}
+
+const w = new web('李四')
+web.run()
+```
+ 
+
+typescript里面定义属性提供乐了 三种修饰符：
+
+1.public 公有的 在类里面 子类 类外面都可以访问
+
+2.protected 保护类型 在类里面、子类里面都可以访问，在类外部无法访问 
+
+3.private 表示私有 在类里面可以访问 子类 外部都没法访问
+
+属性如果不加修饰符，默认就是公有
+
+
+## 类的静态方法
+
+``` js
+
+ class Person {
+   name: string;
+   age:number = 20; 
+   static sex = '男'
+   constructor(name: string) {
+     this.name = name;
+   }
+
+   run() { //实例方法
+      alert(this.name+'在运动')
+   }
+
+   work(){
+     alert(this.name+'在工作')
+   }
+
+   static print(){  //静态方法没办法调用类里面的属性
+     alert('print方法'+Person.sex)
+   }
+ }
+ Person.print() //print 是静态方法直接调用，不需要初始化实例
+```
+
+## 接口
+
+接口的作用，在面向对象的编程中，接口是一种规范定义，它定义了行为和动作规范，在程序设计里面，接口起到一种限制和规范的作用。接口定义了某一批类所以需
+
+要遵守的规范，接口不关心这些类的内部数据，也不关心这些类里面的方法的实现细节，它只规定在这批类里必须提供某些方法，提供这些方法的类就可以满足实际需
+
+要。typescript中的接口类似于java,同时还增加了更灵活的接口类型，包括属性、函数、可索引和类等
 
 ## 加密函数类型接口
 
@@ -106,6 +179,7 @@ var arr:userArr = ['aa','bb']
 
 ```
 
+
 ## 类类型接口：对类的约束 和 抽象类有点像
 
 ``` js
@@ -124,33 +198,6 @@ class dog implements Animal {
     console.log(this.name+'吃粮食')
   }
 }
-```
-## typescirp定义静态方法和属性
-
-``` js
-class Person {
-  public name:string
-  pubic age:number =  21
-  //静态属性
-
-  static sex = '男'
-  constructor(name:string) {
-    this.name = name 
-  }
-
-  run() {
-    alert(`${this.name}在运动`)
-  }
-
-  work() {
-    alert(`${this.name}在工作`)
-  }
-  static print() {
-    alert('print方法')
-  }
-}
-
-Person.print() //print 是静态方法直接调用，不需要初始化实例
 ```
 
 ## ts中的多态
