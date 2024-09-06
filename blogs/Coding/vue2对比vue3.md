@@ -553,5 +553,3 @@ export default {
 }
 </script>
 ```
-
-希望这篇文章能让大家体验到一个比较全面的Vue2与Vue3的开发区别。

@@ -237,7 +237,7 @@ $ git push remote <remote> <branch>
 $ git merge <branch>
 ```
 
-合并某个分支上的单个 commit:
+合并某个分支上的单个 (挑选提交)commit: 
 ::: tip
 首先，用 git log 或 sourcetree 工具查看一下你想选择哪些 commits 进行合并,
 比如 feature 分支上的 commit 82ecb31 非常重要，它含有一个 bug 的修改，或其他人想访问的内容。无论什么原因，你现在只需要将 82ecb31 合并到 master，而不合并 feature 上的其他 commits，所以我们用 git cherry-pick 命令来做
