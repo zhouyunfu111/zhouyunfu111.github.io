@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "author": "reco_luan",
   "scripts": {
-    "dev": "vuepress dev . --open --host \"localhost\"",
-    "build": "vuepress build ."
+    "dev": "SET NODE_OPTIONS=--openssl-legacy-provider && vuepress dev . --open --host \"localhost\"",
+    "build": "SET NODE_OPTIONS=--openssl-legacy-provider && vuepress build ."
   },
   "devDependencies": {
     "@vuepress-reco/vuepress-plugin-kan-ban-niang": "vuepress-reco/vuepress-plugin-kan-ban-niang",
