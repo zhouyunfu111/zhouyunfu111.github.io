@@ -9,7 +9,7 @@ git pull
 git add .
 
 # 声明变量，不带空格
-my_variable=$(git commit -m '更新')
+my_variable=$(git commit -m '更新') ? 1 : 0
 
 # 使用变量，在变量名前加上$
 echo $my_variable
