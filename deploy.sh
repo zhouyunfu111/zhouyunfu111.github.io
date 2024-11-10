@@ -1,15 +1,15 @@
 #!/usr/bin/env sh
 
 # 确保脚本抛出遇到的错误
-# set -e
+set -e
 
-# git pull
+git pull
 
 git add .
 
 git commit -m '更新'
 
-# git push origin gh-pages
+git push origin gh-pages
 
 # 生成静态文件
 npm run build
