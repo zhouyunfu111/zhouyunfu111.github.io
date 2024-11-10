@@ -3,11 +3,19 @@
 # 确保脚本抛出遇到的错误
 set -e
 
+
 git pull
 
 git add .
 
-git commit -m '更新'
+$commitResult = $(git commit -m '更新')
+echo $commitResult
+
+if [ $commitResult ]
+then
+echo "提交成功"
+fi
+echo "提交失败"
 
 git push origin gh-pages
 
