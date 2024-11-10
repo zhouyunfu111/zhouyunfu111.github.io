@@ -8,7 +8,7 @@ git pull
 
 git add .
 
-$commitResult = $(git commit -m '更新')
+commitResult = $(git commit -m '更新')
 echo $commitResult
 
 if [ $commitResult ]
