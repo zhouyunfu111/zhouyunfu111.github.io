@@ -235,8 +235,13 @@ wifi后居然可以正常访问。最后发现这个可能和阿里云服务器�
 
 2.在安卓端使用picker组件时，设置一个定时器，每次滑动时都清除定时器，然后重新设置定时器，当定时器执行时，获取picker组件的值，然后设置picker组件的值，这样就可以避免picker组件滑动过快导致的问题。
 
+## uniapp h5项目使用uni.getLocation()API，type的值为gcj02时，在本地浏览没有问题，但是在正式环境报错`getLocation:fail translateGeo fai`
 
+- 场景：在uniapp h5项目使用uni.getLocation()API，type的值为gcj02时，在本地浏览没有问题，但是在正式环境报错`getLocation:fail translateGeo fai`
 
+- 解决办法：
+
+使用type的值为wgs84，这样就可以避免这个问题。
 
 
 
