@@ -8,8 +8,11 @@ git pull
 
 git add .
 
-commitResult = $(git commit -m '更新')
-echo $commitResult
+# 声明变量，不带空格
+my_variable=$(git commit -m '更新')
+
+# 使用变量，在变量名前加上$
+echo $my_variable
 
 if [ $commitResult ]
 then
