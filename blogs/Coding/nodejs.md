@@ -169,5 +169,38 @@ const pathStr2 = path.join(__dirname,'./files/1.txt')
 console.log(pathStr2)
 ``` 
 
+## app.use函数的作用
+
+app.use()函数的作用，就是用来注册全局中间件，用来处理每一次请求。
+
+vue.use()函数，用来注册全局组件。 
+
+## express中的路由
+
+路由就是映射关系，简单来说，url地址与处理函数之间的对应关系。
+
+在Express中，路由是由三部分组成的，分别是请求的类型、请求的URL地址、处理函数，格式如下：
+
+``` javascript
+
+app.METHOD(PATH,HANDLER)
+
+```
+
+例如：
+
+``` javascript
+
+app.get('/user/getuser',function(req,res) {
+
+  res.send('Get user page')
+
+})
+
+app.post('/user/uerinfo',function(req,res) {
+
+  res.send('Get user info page')
+
+})
 
 
