@@ -203,4 +203,32 @@ app.post('/user/uerinfo',function(req,res) {
 
 })
 
+## express中的内置中间件,express.urlencoded()方法中的extended属性是什么意思
+
+``` javascript
+
+app.use(express.urlencoded({extended:false}))
+
+```
+当extended参数设置为true时，express.urlencoded()会使用:ml-search[qs]库来解析URL编码的数据，这允许解析嵌套对象和数组。这意味着你可以在表单中提交复杂的数据结构，如对象和数组，而不仅仅是简单的键值对。这种解析方式使得express.urlencoded()`能够处理更复杂的数据类型，适用于需要提交复杂表单数据的场景‌
+
+相比之下，当extended参数设置为false时，express.urlencoded()会使用`querystring库来解析URL编码的数据，这限制了只能解析简单的键值对，不支持嵌套对象和数组。这种解析方式适用于提交简单表单数据的情况‌
+
+extended: false表示使用系统模块querystring来处理，也是官方推荐的
+
+extended: true表示使用第三方模块qs来处理
+
+## nodejs中的五大中间类型
+
+1.应用级别的中间件
+
+2.路由级别的中间件
+
+3.错误级别的中间件
+
+4.Express内置的中间件
+
+5.第三方的中间件
+
+
 
