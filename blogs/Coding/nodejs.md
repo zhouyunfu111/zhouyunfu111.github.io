@@ -203,6 +203,8 @@ app.post('/user/uerinfo',function(req,res) {
 
 })
 
+```
+
 ## express中的内置中间件,express.urlencoded()方法中的extended属性是什么意思
 
 ``` javascript
@@ -251,4 +253,77 @@ extended: true表示使用第三方模块qs来处理
 4. Express 内置的中间件
 5. 第三方的中间件
 
+## Express中的错误级别中间件
+
+通过app.use()函数，注册错误级别的中间件，格式如下：
+
+``` javascript
+
+app.use(function(err,req,res,next) {
+
+  console.log('发生了错误' + err.message)
+  res.send('Error!')
+
+})
+
+```
+注册错误级别中间件时，需要把 4 个形参都传递进去，其中第一个形参是固定的，必须是 error，后面三个形参可以省略
+
+## Express中的第三方中间件
+
+1. body-parser中间件
+
+body-parser 中间件可以用来解析表单数据，将表单数据转为对象，从而方便我们处理表单数据
+
+``` javascript
+
+const express = require('express')
+const bodyParser = require('body-parser')
+
+const app = express()
+
+
+app.use(bodyParser.urlencoded({extended:false}))
+
+app.post('/user',function(req,res) {
+
+  console.log(req.body)
+
+})
+
+app.listen(80,function() {
+
+  console.log('http://127.0.0.1')
+
+})
+
+```
+
+2. multer中间件
+
+multer 中间件主要用于处理 `文件上传`，将客户端上传的文件保存在服务器的指定目录中
+
+``` javascript
+
+const express = require('express')
+const multer = require('multer')
+const path = require('path')
+
+const app = express()
+
+// 通过dest属性，指定文件存放的路径
+const upload = multer({dest: path.join(__dirname,'/uploads')})
+
+app.post('/avatar',upload.single('avatar'),function(req,res) {
+
+  console.log(req.file)
+  res.send('OK!')
+
+})
+
+app.listen(80,function() {
+  console.log('http://127.0.0.1')
+})
+
+```
 
