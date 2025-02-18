@@ -39,7 +39,114 @@ $ npm config set registry https://registry.npm.taobao.org
 $ cnpm install [name]
 ```
 
-## 使用 create-react-app 快速构建 React 开发环境
+## react中的组件
+react中的组件分为函数组件和类组件
+### 函数组件
+``` js
+function Welcome(props) {
+  return <h1>Hello, {props.name}</h1>;
+}
+```
+### 类组件
+``` js
+class Welcome extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return <h1>Hello, {this.props.name}</h1>;
+  }
+}
+```
+## react中的事件
+react中的事件和原生事件类似，但是有一些区别，比如在react中事件名称需要使用驼峰命名法，并且需要通过{}来包裹事件处理函数
+``` js
+class Toggle extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  handleClick() {
+    console.log('点击了按钮');
+  }
+  render() {
+    return (
+      <button onClick={this.handleClick}>
+        点击按钮
+      </button>
+    );
+  }
+}
+```
+## react中的状态
+react中的状态是通过this.state来获取的，可以通过this.setState来更新状态，但是不能直接修改状态，需要通过this.setState来更新状态
+``` js
+class Toggle extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {isToggleOn: true};
+    // 这个绑定是必要的，使`this`在回调中起作用
+    this.handleClick = this.handleClick.bind(this);
+  }
 
+  handleClick() {
+    this.setState(prevState => ({
+      isToggleOn: !prevState.isToggleOn
+    }));
+  }
+  render() {
+    return (
+      <button onClick={this.handleClick}>
+        {this.state.isToggleOn ? 'ON' : 'OFF'}
+      </button>
+    );
+  }
+}
+```
+## react中的属性
+react中的属性是通过props来获取的，可以通过this.props来获取属性，但是不能直接修改属性,需要通过this.setState来更新属性
+``` js
+class Welcome extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handClick = this.handClick.bind(this)
+  }
+  handClick() {
+    this.setState({
+      name: 'aaa'
+    })
+  }
+  render() {
+    return <h1 onClick={handClick}>Hello, {this.props.name}</h1>;
+  }
+}
+ReactDOM.render(
+  // Try changing to isLoggedIn={true}:
+  <Greeting name="abc" />,
+  document.getElementById('root')
+);
+```
+## react中的条件渲染
+react中的条件渲染是通过if语句来实现的，可以通过if语句来判断是否渲染某个组件
+``` js
+function UserGreeting(props) {
+  return <h1>Welcome back!</h1>;
+}
 
+function GuestGreeting(props) {
+  return <h1>Please sign up.</h1>;
+}
 
+function Greeting(props) {
+  const isLoggedIn = props.isLoggedIn;
+  if (isLoggedIn) {
+    return <UserGreeting />;
+  }
+}
+
+ReactDOM.render(
+  // Try changing to isLoggedIn={true}:
+  <Greeting isLoggedIn={false} />,
+  document.getElementById('root')
+);
+
+```

@@ -35,3 +35,21 @@ title: mysql学习！
 > 删除数据库：`drop database 数据库名;`
 >
 > 查看数据库：`show databases;`
+
+## 四、mysql表字段类型
+
+primary key : 主键，唯一标识
+
+auto_increment : 自增
+
+not null : 非空
+
+default : 默认值
+
+unique : 唯一
+
+## 五、mysql表操作
+
+### 1. mysql表创建
+
+> 创建表：`create table 表名(字段名 字段类型,字段名 字段类型,字段名 字段类型);`
